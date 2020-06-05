@@ -7,10 +7,34 @@ const Leon = () => {
   const pixelRatio = 2
   let sw
   let sh
-  let ctx, leon
+  let ctx
   const sizeRatio = 16
-  const text = 'Sebastiaan\nScheers'.split('')
-  const total = text.length
+  const firstNameText = 'Sebastiaan'.split('')
+  const firstName = {
+    total: firstNameText.length,
+    leon: [],
+    rect: {
+      h: 0,
+      w: 0,
+    },
+    gap: {
+      x: 0,
+      y: 0,
+    },
+  }
+  const lastNameText = 'Scheers'.split('')
+  const lastName = {
+    total: lastNameText.length,
+    leon: [],
+    rect: {
+      h: 0,
+      w: 0,
+    },
+    gap: {
+      x: 0,
+      y: 0,
+    },
+  }
 
   const canvasResize = () => {
     sw = document.body.clientWidth
@@ -22,7 +46,7 @@ const Leon = () => {
     canvas.current.style.height = sh + 'px'
     ctx.scale(pixelRatio, pixelRatio)
 
-    if (leon) leon.size = getSize(sizeRatio)
+    // if (leon) leon.size = getSize(sizeRatio)
   }
 
   const getSize = (ratio) => {
@@ -37,56 +61,73 @@ const Leon = () => {
     ctx = canvas.current.getContext('2d')
     canvasResize()
 
-    // for (let i = 0; i < total; i++) {
-    //   const letter = new LeonSans({
-    //     text: text[i],
-    //     color: ['#000000'],
-    //     size: getSize(sizeRatio),
-    //     weight: 200,
-    //   })
-    //   leon.push(letter)
-    // }
+    firstName.leon = firstNameText.map(
+      (l) =>
+        new LeonSans({
+          text: l,
+          color: ['#000000'],
+          size: getSize(sizeRatio),
+          weight: 200,
+        })
+    )
 
-    leon = new LeonSans({
-      text: 'Sebastiaan\nScheers',
-      color: ['#000000'],
-      size: getSize(sizeRatio),
-      maxWidth: sw,
-      weight: 200,
-      align: 'center',
-    })
-    console.log('init -> leon', leon)
+    // leon = new LeonSans({
+    //   text: 'Sebastiaan\nScheers',
+    //   color: ['#000000'],
+    //   size: getSize(sizeRatio),
+    //   maxWidth: sw,
+    //   weight: 200,
+    //   align: 'center',
+    // })
   }
 
   const draw = () => {
     requestAnimationFrame(draw)
     ctx.clearRect(0, 0, sw, sh)
 
-    const x = (sw - leon.rect.w) / 2
-    const y = (sh - leon.rect.h) / 2
-    leon.position(x, y)
+    let w = 0,
+      h = 0
+    for (let i = 0; i < firstName.total; i++) {
+      w += firstName.leon[i].rect.w + 5
+      h = firstName.leon[i].rect.h
+    }
+    firstName.rect = { w, h }
 
-    leon.draw(ctx)
+    const x = (sw - firstName.rect.w) / 2
+    const y = (sh - firstName.rect.h) / 2
+    let space = 0
+
+    for (let j = 0; j < firstName.total; j++) {
+      firstName.leon[j].position(x + space, y)
+      firstName.leon[j].draw(ctx)
+      space += firstName.leon[j].rect.w + 5
+    }
+
+    // const x = (sw - leon.rect.w) / 2
+    // const y = (sh - leon.rect.h) / 2
+    // leon.position(x, y)
+
+    // leon.draw(ctx)
   }
 
   const animate = () => {
-    const tl = gsap.timeline()
+    // const tl = gsap.timeline()
     // Draw letters
-    for (let i = 0; i < total; i++) {
-      gsap.killTweensOf(leon.drawing[i])
-      gsap.fromTo(
-        leon.drawing[i],
-        2,
-        {
-          value: 0,
-        },
-        {
-          delay: i * 0.3,
-          value: 1,
-          ease: 'power4.out',
-        }
-      )
-    }
+    // for (let i = 0; i < total; i++) {
+    //   gsap.killTweensOf(leon.drawing[i])
+    //   gsap.fromTo(
+    //     leon.drawing[i],
+    //     2,
+    //     {
+    //       value: 0,
+    //     },
+    //     {
+    //       delay: i * 0.3,
+    //       value: 1,
+    //       ease: 'power4.out',
+    //     }
+    //   )
+    // }
     // for (let i = 0; i < total; i++) {
     //   tl.fromTo(
     //     leon.drawing[i],
@@ -111,6 +152,35 @@ const Leon = () => {
     //     ease: 'power4.out',
     //   })
     // }
+    for (let i = 0; i < firstName.total; i++) {
+      const letter = firstName.leon[i]
+      for (let j = 0; j < firstName.leon[i].drawing.length; j++) {
+        gsap.fromTo(
+          letter.drawing[j],
+          2,
+          {
+            value: 0,
+          },
+          {
+            delay: i * 0.2,
+            value: 1,
+            ease: 'power4.out',
+          }
+        )
+      }
+      gsap.delayedCall(0.3 * (firstName.total - 1) + 0.4, weight)
+    }
+  }
+
+  const weight = () => {
+    for (let i = 0; i < firstName.total; i++) {
+      gsap.to(firstName.leon[i], {
+        duration: 1.4,
+        delay: 0.06 * i,
+        weight: 600,
+        ease: 'power4.out',
+      })
+    }
   }
 
   // const width = () => {
