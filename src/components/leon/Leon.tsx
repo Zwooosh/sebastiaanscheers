@@ -76,7 +76,7 @@ const Leon = () => {
         size: getSize(sizeRatio),
         weight: defaultWeight,
       })
-      // letter.drawing.forEach((d) => (d.value = 0))
+      letter.drawing.forEach((d) => (d.value = 0))
       return letter
     })
 
@@ -87,7 +87,7 @@ const Leon = () => {
         size: getSize(sizeRatio),
         weight: defaultWeight,
       })
-      // letter.drawing.forEach((d) => (d.value = 0))
+      letter.drawing.forEach((d) => (d.value = 0))
       return letter
     })
   }
@@ -105,7 +105,7 @@ const Leon = () => {
       w += l.rect.w + letterSpacing
       h = l.rect.h
     }
-    firstName.rect = { w, h }
+    firstName.rect = { w: w - letterSpacing, h }
 
     // Tracking lastName
     w = 0
@@ -114,7 +114,7 @@ const Leon = () => {
       w += l.rect.w + letterSpacing
       h = l.rect.h
     }
-    lastName.rect = { w, h }
+    lastName.rect = { w: w - letterSpacing, h }
 
     // Positioning firstName
     let x = (screenWidth - firstName.rect.w) / 2 + firstName.gap.x
@@ -224,34 +224,17 @@ const Leon = () => {
       animateZoom
     )
   }
-  // 0,0,sw,sh
-  function a(e, t, i, n) {
-    // sw - 0
-    // sh - 0
-    var o = i - e,
-      s = n - t
-    return Math.sqrt(o * o + s * s)
-  }
 
   const animateZoom = () => {
     const duration = 1.8
     const size =
       0.6 * Math.sqrt(screenWidth * screenWidth + screenHeight * screenHeight)
-    console.log('animateZoom -> size', size)
-    const x = -(size >> 1)
-    const y = size / 20
 
     for (let i = 0; i < firstName.total; i++) {
       gsap.to(firstName.leon[i], {
         duration,
         size,
         weight: 1,
-        ease: 'power4.inOut',
-      })
-      gsap.to(firstName.gap, {
-        duration,
-        x,
-        y,
         ease: 'power4.inOut',
         onComplete: function () {
           animateFullScreen()
@@ -272,8 +255,6 @@ const Leon = () => {
     const duration = 0.7
     const size =
       20 * Math.sqrt(screenWidth * screenWidth + screenHeight * screenHeight)
-    const x = -(size >> 1)
-    const y = size / 10
 
     for (const l of firstName.leon) {
       gsap.to(l, {
@@ -285,23 +266,18 @@ const Leon = () => {
         duration: duration,
         size,
         ease: 'power4.in',
+        onComplete: function () {
+          document.body.style.backgroundColor = '#000000'
+          Router.push('/home')
+        },
       })
     }
-    gsap.to(firstName.gap, {
-      duration: duration,
-      x,
-      y,
-      ease: 'power4.in',
-      onComplete: function () {
-        // Router.push('/home')
-      },
-    })
   }
 
   useEffect(() => {
     init()
     requestAnimationFrame(render)
-    animateZoom()
+    animateDrawing()
   }, [canvas])
 
   useEffect(() => {
