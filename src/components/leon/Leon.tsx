@@ -235,8 +235,9 @@ const Leon = () => {
 
   const animateZoom = () => {
     const duration = 1.8
-    const size = console.log('animateZoom -> size', size)
-    0.6 * Math.sqrt(screenWidth * screenWidth + screenHeight * screenHeight)
+    const size =
+      0.6 * Math.sqrt(screenWidth * screenWidth + screenHeight * screenHeight)
+    console.log('animateZoom -> size', size)
     const x = -(size >> 1)
     const y = size / 20
 
