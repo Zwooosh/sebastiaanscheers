@@ -11,6 +11,7 @@ export const Home = (): JSX.Element => (
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
       />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <script src="/libs/leon.js" />
     </Head>
 
     <main>

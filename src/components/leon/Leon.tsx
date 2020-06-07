@@ -2,8 +2,6 @@ import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import Router from 'next/router'
 
-import LeonSans from '../../lib/leon.js'
-
 interface IFont {
   total: number
   leon: typeof LeonSans[]
@@ -12,6 +10,11 @@ interface IFont {
 }
 
 const Leon = () => {
+  if (typeof window === 'undefined') {
+    return null
+  }
+  const { LeonSans } = window
+
   const canvas = useRef<HTMLCanvasElement>()
   const pixelRatio = 2
   const defaultWeight = 200
@@ -268,7 +271,7 @@ const Leon = () => {
         ease: 'power4.in',
         onComplete: function () {
           document.body.style.backgroundColor = '#000000'
-          Router.push('/home')
+          Router.push('/profile')
         },
       })
     }
