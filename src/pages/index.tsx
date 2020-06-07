@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Leon from '../components/leon/Leon'
 
-export const Intro = (): JSX.Element => (
+export const Home = (): JSX.Element => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -41,4 +41,4 @@ export const Intro = (): JSX.Element => (
   </div>
 )
 
-export default Intro
+export default Home
