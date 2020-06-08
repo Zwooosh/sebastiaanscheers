@@ -2,26 +2,26 @@ import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import Router from 'next/router'
 
+declare global {
+  interface Window {
+    LeonSans: any
+  }
+}
+
 interface IFont {
   total: number
-  leon: typeof LeonSans[]
+  leon: any[]
   rect: { h: number; w: number }
   gap?: { x: number; y: number }
 }
 
 const Leon = () => {
-  if (typeof window === 'undefined') {
-    return null
-  }
-  const { LeonSans } = window
-
-  const canvas = useRef<HTMLCanvasElement>()
   const pixelRatio = 2
   const defaultWeight = 200
-
   let screenWidth: number
   let screenHeight: number
   let ctx: CanvasRenderingContext2D
+  const canvas = useRef<HTMLCanvasElement>()
 
   const firstNameText = 'Sebastiaan'.split('')
   const firstName: IFont = {
@@ -61,11 +61,15 @@ const Leon = () => {
     ctx.scale(pixelRatio, pixelRatio)
   }
 
-  const getSize = (ratio) => {
+  const getSize = (ratio: number) => {
     return screenWidth / 0.5 / ratio
   }
 
   const init = () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
     const sizeRatio = 16
     const textColor = '#000000'
 
@@ -73,7 +77,7 @@ const Leon = () => {
     canvasResize()
 
     firstName.leon = firstNameText.map((l) => {
-      const letter = new LeonSans({
+      const letter = new window.LeonSans({
         text: l,
         color: [textColor],
         size: getSize(sizeRatio),
@@ -84,7 +88,7 @@ const Leon = () => {
     })
 
     lastName.leon = lastNameText.map((l) => {
-      const letter = new LeonSans({
+      const letter = new window.LeonSans({
         text: l,
         color: [textColor],
         size: getSize(sizeRatio),
@@ -271,26 +275,31 @@ const Leon = () => {
         ease: 'power4.in',
         onComplete: function () {
           document.body.style.backgroundColor = '#000000'
-          Router.push('/profile')
+          Router.push('/hello')
         },
       })
     }
   }
 
   useEffect(() => {
-    init()
-    requestAnimationFrame(render)
-    animateDrawing()
-  }, [canvas])
-
-  useEffect(() => {
+    const leonScript = document.createElement('script')
+    leonScript.src = '/lib/leon.js'
+    leonScript.async = true
+    leonScript.onload = () => {
+      init()
+      requestAnimationFrame(render)
+      animateDrawing()
+    }
+    document.body.appendChild(leonScript)
     window.addEventListener('resize', canvasResize, false)
+
     return () => {
       window.removeEventListener('resize', canvasResize, false)
+      document.body.removeChild(leonScript)
     }
   }, [])
 
-  return <canvas ref={canvas}></canvas>
+  return <canvas ref={canvas} />
 }
 
 export default Leon

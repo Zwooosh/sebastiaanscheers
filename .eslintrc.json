@@ -31,7 +31,12 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "prefixWithI": "always",
+    "@typescript-eslint/interface-name-prefix": [
+      0,
+      {
+        "prefixWithI": "always"
+      }
+    ],
     "no-console": [
       2,
       {
