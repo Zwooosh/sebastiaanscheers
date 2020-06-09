@@ -1,7 +1,3 @@
-import { createSpacing } from 'spacing-helper'
-
-export const spacing = createSpacing({ factor: 8, units: 'rem' })
-
 const baseSizes = {
   px: '1px',
   '0': '0',
