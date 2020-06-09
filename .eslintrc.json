@@ -37,6 +37,7 @@
         "prefixWithI": "always"
       }
     ],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
     "no-console": [
       2,
       {
