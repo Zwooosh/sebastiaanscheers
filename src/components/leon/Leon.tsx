@@ -274,7 +274,7 @@ const Leon = () => {
         size,
         ease: 'power4.in',
         onComplete: function () {
-          document.body.style.backgroundColor = '#000000'
+          // document.body.style.backgroundColor = '#000000'
           Router.push('/hello')
         },
       })

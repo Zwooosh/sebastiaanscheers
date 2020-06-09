@@ -1,4 +1,4 @@
-const baseSizes = {
+export const baseSizes = {
   px: '1px',
   '0': '0',
   '1': '0.25rem',
@@ -20,6 +20,8 @@ const baseSizes = {
   '64': '16rem',
 }
 
+export type BaseSizes = typeof baseSizes
+
 const largeSizes = {
   full: '100%',
   '3xs': '14rem',
@@ -36,38 +38,20 @@ const largeSizes = {
   '6xl': '72rem',
 }
 
-const containers = {
+const container = {
   sm: '640px',
   md: '768px',
   lg: '1024px',
   xl: '1280px',
 }
 
-export const sizes = {
+const sizes = {
   ...baseSizes,
   ...largeSizes,
-  containers,
+  container,
 }
 
-export const breakpoints = {
-  sm: '30em',
-  md: '48em',
-  lg: '62em',
-  xl: '80em',
-}
+export type Sizes = typeof baseSizes &
+  typeof largeSizes & { container: typeof container }
 
-export const radii = {
-  none: '0',
-  sm: '0.125rem',
-  md: '0.25rem',
-  lg: '0.5rem',
-  full: '9999px',
-}
-
-export const theme = {
-  colors: {
-    bg: '#000000',
-    white: '#ffffff',
-    primary: '#ff0f81',
-  },
-}
+export default sizes

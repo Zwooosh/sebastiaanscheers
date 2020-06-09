@@ -1,7 +1,8 @@
 import App from 'next/app'
 import { css, Global } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
-import { theme } from '@/styles/theme'
+
+import theme from '@/theme'
 
 export default class MyApp extends App {
   render() {
@@ -11,7 +12,8 @@ export default class MyApp extends App {
         <Global
           styles={css`
             html,
-            body {
+            body,
+            #__next {
               padding: 0;
               margin: 0;
               font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
