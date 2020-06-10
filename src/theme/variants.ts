@@ -6,7 +6,7 @@ const variants = {
     color: 'inherit',
     textDecoration: 'none',
     transition: 'all .2s ease-in',
-    ':hover,:focus,.active': {
+    ':hover,:focus,:active': {
       color: 'pink.500',
     },
   },
