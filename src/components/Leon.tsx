@@ -70,7 +70,7 @@ const Leon: React.FC<IProps> = ({ href }) => {
   }
 
   const init = () => {
-    if (typeof window === 'undefined') {
+    if (!process.browser) {
       return
     }
 
