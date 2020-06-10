@@ -33,7 +33,7 @@ export default function Meta() {
       {/* <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> */}
       <meta name="description" content="My little space on the internet" />
       <meta property="og:image" content="/favicon/android-chrome-192x192.png" />
-      <title>SebastiaanScheers.nl</title>
+      <title>Sebastiaan Scheers</title>
     </Head>
   )
 }
