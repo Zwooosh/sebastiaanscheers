@@ -5,6 +5,7 @@ import shadows from './shadows'
 import sizes, { baseSizes } from './sizes'
 import typography from './typography'
 import zIndices from './zIndices'
+import variants from './variants'
 
 const theme = {
   breakpoints,
@@ -15,6 +16,7 @@ const theme = {
   sizes,
   shadows,
   space: baseSizes,
+  variants,
 }
 
 export type Theme = typeof theme

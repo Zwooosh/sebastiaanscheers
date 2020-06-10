@@ -1,10 +1,10 @@
 import Layout from '@/components/core/Layout'
 import Container from '@/components/core/Container'
 
-export default function Hello(): JSX.Element {
+export default function Projects(): JSX.Element {
   return (
     <Layout>
-      <Container>Hello</Container>
+      <Container>Projects</Container>
     </Layout>
   )
 }

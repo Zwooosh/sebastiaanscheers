@@ -1,3 +1,5 @@
+import breakpoints from './breakpoints'
+
 export const baseSizes = {
   px: '1px',
   '0': '0',
@@ -39,10 +41,11 @@ const largeSizes = {
 }
 
 const container = {
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
+  sm: breakpoints[0],
+  md: breakpoints[1],
+  lg: breakpoints[2],
+  xl: breakpoints[3],
+  '2xl': breakpoints[4],
 }
 
 const sizes = {

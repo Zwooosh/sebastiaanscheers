@@ -24,6 +24,8 @@ export default class MyApp extends App {
               min-height: 100vh;
               overflow: hidden;
               outline: 0;
+              background-color: #000;
+              color: #fff;
             }
 
             * {
