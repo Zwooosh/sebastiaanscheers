@@ -15,7 +15,11 @@ interface IFont {
   gap?: { x: number; y: number }
 }
 
-const Leon = () => {
+interface IProps {
+  href?: string
+}
+
+const Leon: React.FC<IProps> = ({ href }) => {
   const pixelRatio = 2
   const defaultWeight = 200
   let screenWidth: number
@@ -145,6 +149,19 @@ const Leon = () => {
     }
   }
 
+  const reset = () => {
+    for (const a of firstName.leon) {
+      gsap.killTweensOf(a)
+    }
+    for (const b of lastName.leon) {
+      gsap.killTweensOf(b)
+    }
+    firstName.rect.h = firstName.rect.w = firstName.gap.x = firstName.gap.y = 0
+    lastName.rect.h = lastName.rect.w = lastName.gap.x = lastName.gap.y = 0
+    init()
+    animateDrawing()
+  }
+
   const animateDrawing = () => {
     const duration = 2
     const delayPerLetter = 0.3
@@ -153,6 +170,7 @@ const Leon = () => {
 
     for (let i = 0; i < firstName.total; i++) {
       for (const d of firstName.leon[i].drawing) {
+        gsap.killTweensOf(d)
         gsap.fromTo(
           d,
           {
@@ -169,6 +187,7 @@ const Leon = () => {
     }
     for (let i = 0; i < lastName.total; i++) {
       for (const d of lastName.leon[i].drawing) {
+        gsap.killTweensOf(d)
         gsap.fromTo(
           d,
           {
@@ -274,8 +293,11 @@ const Leon = () => {
         size,
         ease: 'power4.in',
         onComplete: function () {
-          // document.body.style.backgroundColor = '#000000'
-          Router.push('/hello')
+          if (href) {
+            Router.push(href)
+          } else {
+            reset()
+          }
         },
       })
     }
@@ -298,6 +320,12 @@ const Leon = () => {
       document.body.removeChild(leonScript)
     }
   }, [])
+
+  useEffect(() => {
+    if (href) {
+      Router.prefetch(href)
+    }
+  }, [href])
 
   return <canvas ref={canvas} />
 }
