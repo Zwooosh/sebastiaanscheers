@@ -2,7 +2,7 @@ import App from 'next/app'
 import { css, Global } from '@emotion/core'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 
-import theme, { Theme } from '@/theme'
+import { themeDark, Theme } from '@/theme'
 
 const makeGlobalStyles = (theme: Theme) => css`
   html,
@@ -17,16 +17,12 @@ const makeGlobalStyles = (theme: Theme) => css`
     min-height: 100vh;
     overflow: hidden;
     outline: 0;
-    background-color: ${theme.colors.black};
-    color: ${theme.colors.white};
+    background-color: ${theme.colors.background};
+    color: ${theme.colors.text};
   }
 
   * {
     box-sizing: border-box;
-  }
-
-  canvas {
-    display: block;
   }
 `
 
@@ -38,7 +34,7 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeDark}>
         <GlobalStyles />
         <Component {...pageProps} />
       </ThemeProvider>

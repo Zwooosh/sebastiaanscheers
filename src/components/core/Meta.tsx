@@ -31,7 +31,7 @@ export default function Meta() {
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#000" />
       {/* <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> */}
-      <meta name="description" content="My little space on the internet" />
+      <meta name="description" content="Freelance Front-end Developer" />
       <meta property="og:image" content="/favicon/android-chrome-192x192.png" />
       <title>Sebastiaan Scheers</title>
     </Head>

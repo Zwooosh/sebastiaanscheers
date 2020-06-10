@@ -1,24 +1,4 @@
-export interface ColorHues {
-  50: string
-  100: string
-  200: string
-  300: string
-  400: string
-  500: string
-  600: string
-  700: string
-  800: string
-  900: string
-}
-
-export type Colors = typeof colors
-
-const colors = {
-  transparent: 'transparent',
-  current: 'currentColor',
-  black: '#000',
-  white: '#fff',
-
+const hues = {
   whiteAlpha: {
     50: 'rgba(255, 255, 255, 0.04)',
     100: 'rgba(255, 255, 255, 0.06)',
@@ -84,58 +64,6 @@ const colors = {
     900: '#652B19',
   },
 
-  yellow: {
-    50: '#fffff0',
-    100: '#fefcbf',
-    200: '#faf089',
-    300: '#f6e05e',
-    400: '#ecc94b',
-    500: '#d69e2e',
-    600: '#b7791f',
-    700: '#975a16',
-    800: '#744210',
-    900: '#5F370E',
-  },
-
-  green: {
-    50: '#f0fff4',
-    100: '#c6f6d5',
-    200: '#9ae6b4',
-    300: '#68d391',
-    400: '#48bb78',
-    500: '#38a169',
-    600: '#2f855a',
-    700: '#276749',
-    800: '#22543d',
-    900: '#1C4532',
-  },
-
-  teal: {
-    50: '#E6FFFA',
-    100: '#B2F5EA',
-    200: '#81E6D9',
-    300: '#4FD1C5',
-    400: '#38B2AC',
-    500: '#319795',
-    600: '#2C7A7B',
-    700: '#285E61',
-    800: '#234E52',
-    900: '#1D4044',
-  },
-
-  blue: {
-    50: '#ebf8ff',
-    100: '#ceedff',
-    200: '#90cdf4',
-    300: '#63b3ed',
-    400: '#4299e1',
-    500: '#3182ce',
-    600: '#2a69ac',
-    700: '#1e4e8c',
-    800: '#153e75',
-    900: '#1a365d',
-  },
-
   cyan: {
     50: '#EDFDFD',
     100: '#C4F1F9',
@@ -149,20 +77,7 @@ const colors = {
     900: '#065666',
   },
 
-  purple: {
-    50: '#faf5ff',
-    100: '#e9d8fd',
-    200: '#d6bcfa',
-    300: '#b794f4',
-    400: '#9f7aea',
-    500: '#805ad5',
-    600: '#6b46c1',
-    700: '#553c9a',
-    800: '#44337a',
-    900: '#322659',
-  },
-
-  pink: {
+  rose: {
     50: '#ffe7f2',
     100: '#ffcfe6',
     200: '#ff9fcd',
@@ -174,6 +89,45 @@ const colors = {
     800: '#660634',
     900: '#33031a',
   },
+
+  mint: {
+    100: '#effcf6',
+    200: '#def9ed',
+    300: '#cef7e4',
+    400: '#bdf4db',
+    500: '#adf1d2',
+    600: '#8ac1a8',
+    700: '#68917e',
+    800: '#456054',
+    900: '#23302a',
+  },
 }
 
-export default colors
+const colors = {
+  transparent: 'transparent',
+  current: 'currentColor',
+  black: '#000',
+  white: '#fff',
+  softBlack: '#16161D',
+  accent: '#553555',
+}
+
+export const colorsDark = {
+  ...colors,
+  background: colors.black,
+  text: colors.white,
+  gray: hues.gray,
+  primary: hues.rose,
+  secondary: hues.mint,
+}
+
+export const colorsLight = {
+  ...colors,
+  background: colors.white,
+  text: colors.softBlack,
+  gray: hues.gray,
+  primary: hues.rose,
+  secondary: hues.mint,
+}
+
+export type Colors = typeof colorsDark

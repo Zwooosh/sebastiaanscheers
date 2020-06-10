@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import Router from 'next/router'
+import styled from '@emotion/styled'
 
 declare global {
   interface Window {
@@ -327,7 +328,11 @@ const Leon: React.FC<IProps> = ({ href }) => {
     }
   }, [href])
 
-  return <canvas ref={canvas} />
+  return <Canvas ref={canvas} />
 }
 
 export default Leon
+
+const Canvas = styled.canvas`
+  display: block;
+`

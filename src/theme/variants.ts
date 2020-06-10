@@ -7,7 +7,7 @@ const variants = {
     textDecoration: 'none',
     transition: 'all .2s ease-in',
     ':hover,:focus,:active': {
-      color: 'pink.500',
+      color: 'primary.500',
     },
   },
 }

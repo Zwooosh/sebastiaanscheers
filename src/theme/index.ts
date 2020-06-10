@@ -1,5 +1,5 @@
 import breakpoints from './breakpoints'
-import colors from './colors'
+import { colorsDark, colorsLight } from './colors'
 import radii from './radii'
 import shadows from './shadows'
 import sizes, { baseSizes } from './sizes'
@@ -7,11 +7,11 @@ import typography from './typography'
 import zIndices from './zIndices'
 import variants from './variants'
 
-const theme = {
+export const themeDark = {
   breakpoints,
   zIndices,
   radii,
-  colors,
+  colors: colorsDark,
   ...typography,
   sizes,
   shadows,
@@ -19,6 +19,13 @@ const theme = {
   variants,
 }
 
-export type Theme = typeof theme
+export const themeLight = {
+  ...themeDark,
+  colors: colorsLight,
+}
+
+export type Theme = typeof themeDark
+
+const theme = (mode: string) => (mode === 'dark' ? themeDark : themeLight)
 
 export default theme

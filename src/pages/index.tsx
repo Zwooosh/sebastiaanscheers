@@ -3,7 +3,7 @@ import Leon from '@/components/Leon'
 
 export default function Home(): JSX.Element {
   return (
-    <Layout bg="white" hideNav>
+    <Layout bg="white" fullScreen>
       <Leon href="/hello" />
     </Layout>
   )

@@ -9,7 +9,7 @@ const NavLink: React.FC<LinkProps> = ({ ...props }) => {
   return (
     <RouteLink
       variant="nav"
-      color={router.pathname?.includes(props.href) ? 'pink.500' : 'inherit'}
+      color={router.pathname?.includes(props.href) ? 'primary.500' : 'inherit'}
       {...props}
     />
   )

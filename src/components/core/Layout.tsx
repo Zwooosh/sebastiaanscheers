@@ -6,19 +6,19 @@ import Nav from '../Nav'
 import Footer from './Footer'
 
 interface IProps extends FlexProps {
-  hideNav?: boolean
+  fullScreen?: boolean
 }
 
-const Layout: React.FC<IProps> = ({ children, hideNav, ...rest }) => {
+const Layout: React.FC<IProps> = ({ children, fullScreen, ...rest }) => {
   return (
     <>
       <Meta />
       <Flex flexDirection="column" height="100%" {...rest}>
-        {!hideNav && <Nav />}
+        {!fullScreen && <Nav />}
         <Box as="main" flex="1">
           {children}
         </Box>
-        <Footer />
+        {!fullScreen && <Footer />}
       </Flex>
     </>
   )
