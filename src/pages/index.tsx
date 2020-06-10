@@ -1,5 +1,5 @@
-import Layout from '_base/Layout'
-import Leon from '@/components/leon/Leon'
+import Layout from '@/components/core/Layout'
+import Leon from '@/components/Leon'
 
 export default function Home(): JSX.Element {
   return (

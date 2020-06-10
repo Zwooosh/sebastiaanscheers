@@ -1,6 +1,6 @@
-import Layout from '_base/Layout'
 import { Box } from 'rebass'
-import sizes from '@/theme/sizes'
+import Layout from '@/components/core/Layout'
+import Nav from '@/components/Nav'
 
 export default function Hello(): JSX.Element {
   return (
@@ -10,9 +10,10 @@ export default function Hello(): JSX.Element {
         color: 'white',
       }}
     >
+      <Nav />
       <Box
         sx={{
-          maxWidth: sizes.container.xl,
+          maxWidth: 'container.xl',
           mx: 'auto',
           px: 3,
         }}

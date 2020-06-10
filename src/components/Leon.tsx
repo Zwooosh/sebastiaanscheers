@@ -40,7 +40,7 @@ const Leon: React.FC<IProps> = ({ href }) => {
       y: 0,
     },
   }
-  const lastNameText = 'Scheers.nl'.split('')
+  const lastNameText = 'Scheers'.split('')
   const lastName = {
     total: lastNameText.length,
     leon: [],
