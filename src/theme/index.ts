@@ -6,8 +6,9 @@ import sizes, { baseSizes } from './sizes'
 import typography from './typography'
 import zIndices from './zIndices'
 import variants from './variants'
+import { useTheme, ThemeProvider, ThemeVariants } from './context'
 
-export const themeDark = {
+const themeDark = {
   breakpoints,
   zIndices,
   radii,
@@ -19,13 +20,18 @@ export const themeDark = {
   variants,
 }
 
-export const themeLight = {
+const themeLight = {
   ...themeDark,
   colors: colorsLight,
 }
 
 export type Theme = typeof themeDark
+const themes: { [key in ThemeVariants]: Theme } = {
+  dark: themeDark,
+  light: themeLight,
+}
 
-const theme = (mode: string) => (mode === 'dark' ? themeDark : themeLight)
+export const themeSelect = (mode: ThemeVariants) =>
+  (themes[mode] || themeDark) as Theme
 
-export default theme
+export { ThemeProvider, useTheme }

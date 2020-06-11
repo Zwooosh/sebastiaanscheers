@@ -1,8 +1,8 @@
 import App from 'next/app'
 import { css, Global } from '@emotion/core'
-import { ThemeProvider, withTheme } from 'emotion-theming'
+import { withTheme } from 'emotion-theming'
 
-import { themeDark, Theme } from '@/theme'
+import { Theme, ThemeProvider } from '@/theme'
 
 const makeGlobalStyles = (theme: Theme) => css`
   html,
@@ -34,7 +34,7 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <ThemeProvider theme={themeDark}>
+      <ThemeProvider>
         <GlobalStyles />
         <Component {...pageProps} />
       </ThemeProvider>

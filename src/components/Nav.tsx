@@ -1,8 +1,9 @@
-import { Box, Flex, LinkProps } from 'rebass'
+import { Box, Flex, LinkProps, Button } from 'rebass'
 import Container from './core/Container'
 import RouteLink from './core/RouteLink'
 import Logo from './Logo'
 import { useRouter } from 'next/router'
+import { useTheme } from '@/theme'
 
 const NavLink: React.FC<LinkProps> = ({ ...props }) => {
   const router = useRouter()
@@ -16,6 +17,8 @@ const NavLink: React.FC<LinkProps> = ({ ...props }) => {
 }
 
 const Nav = () => {
+  const { theme, toggle } = useTheme()
+
   return (
     <Box as="nav" py={2}>
       <Container alignItems="center">
@@ -27,6 +30,9 @@ const Nav = () => {
         <Logo size={10} />
         <Flex mx={-2} flex="1" justifyContent="flex-end">
           <NavLink href="/contact">contact</NavLink>
+          <Button onClick={toggle}>
+            {theme === 'light' ? 'set dark' : 'set light'}
+          </Button>
         </Flex>
       </Container>
     </Box>
