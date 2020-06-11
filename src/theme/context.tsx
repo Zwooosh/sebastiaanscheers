@@ -1,4 +1,11 @@
-import React from 'react'
+import {
+  useEffect,
+  createContext,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react'
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
 import { themeSelect } from './index'
 
@@ -10,22 +17,25 @@ interface IThemeState {
   toggle: () => void
 }
 
-const ThemeContext = React.createContext<IThemeState | undefined>(undefined)
-const useThemeToggle = () => React.useContext(ThemeContext)
+const ThemeContext = createContext<IThemeState | undefined>(undefined)
+const useThemeToggle = () => useContext(ThemeContext)
 
 const useThemeState = () => {
-  const [theme, setTheme] = React.useState<ThemeVariants>('dark')
+  const [theme, setTheme] = useState<ThemeVariants>('dark')
 
-  React.useEffect(() => {
+  useEffect(() => {
     const lsTheme = localStorage.getItem('theme') as ThemeVariants
-    if (lsTheme != theme) {
+    if (lsTheme == null || lsTheme !== theme) {
+      localStorage.setItem('theme', theme)
+    } else {
+      const lsTheme = localStorage.getItem('theme') as ThemeVariants
       setTheme(lsTheme)
     }
-  }, [])
+  }, [theme])
 
   return [theme, setTheme] as [
     ThemeVariants,
-    React.Dispatch<React.SetStateAction<ThemeVariants>>
+    Dispatch<SetStateAction<ThemeVariants>>
   ]
 }
 
@@ -35,7 +45,6 @@ const ThemeProvider = ({ children }) => {
   const toggle = () => {
     const i = (themeVariants.indexOf(theme) + 1) % themeVariants.length
     const newTheme = themeVariants[i]
-    localStorage.setItem('theme', newTheme)
     setTheme(newTheme)
   }
 
