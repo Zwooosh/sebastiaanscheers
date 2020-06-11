@@ -166,6 +166,7 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
         gsap.killTweensOf(d)
       }
     }
+    gsap.killTweensOf(canvas.current)
     gsap.killTweensOf(animateWeight)
     gsap.killTweensOf(animateZoom)
   }
@@ -291,23 +292,29 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
 
     for (const l of firstName.leon) {
       gsap.to(l, {
-        duration: duration,
+        duration,
         weight: 900,
         ease: 'power4.inOut',
       })
       gsap.to(l, {
-        duration: duration,
+        duration,
         size,
         ease: 'power4.in',
-        onComplete: function () {
-          if (href) {
-            Router.push(href)
-          } else {
-            stop()
-          }
-        },
       })
     }
+    gsap.to(canvas.current, {
+      duration: duration / 2,
+      delay: duration / 2,
+      backgroundColor: color,
+      ease: 'power4.in',
+      onComplete: function () {
+        if (href) {
+          Router.push(href)
+        } else {
+          stop()
+        }
+      },
+    })
   }
 
   useEffect(() => {
