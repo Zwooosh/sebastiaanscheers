@@ -18,14 +18,16 @@ interface IFont {
 
 interface IProps {
   href?: string
+  color: string
 }
 
-const Leon: React.FC<IProps> = ({ href }) => {
+const Leon: React.FC<IProps> = ({ href, color }) => {
   const pixelRatio = 2
   const defaultWeight = 200
   let screenWidth: number
   let screenHeight: number
   let ctx: CanvasRenderingContext2D
+  let raf: number | undefined
   const canvas = useRef<HTMLCanvasElement>()
 
   const firstNameText = 'Sebastiaan'.split('')
@@ -70,21 +72,19 @@ const Leon: React.FC<IProps> = ({ href }) => {
     return screenWidth / 0.5 / ratio
   }
 
-  const init = () => {
+  const start = () => {
     if (!process.browser) {
       return
     }
 
     const sizeRatio = 16
-    const textColor = '#000000'
-
     ctx = canvas.current.getContext('2d')
     canvasResize()
 
     firstName.leon = firstNameText.map((l) => {
       const letter = new window.LeonSans({
         text: l,
-        color: [textColor],
+        color: [color],
         size: getSize(sizeRatio),
         weight: defaultWeight,
       })
@@ -95,7 +95,7 @@ const Leon: React.FC<IProps> = ({ href }) => {
     lastName.leon = lastNameText.map((l) => {
       const letter = new window.LeonSans({
         text: l,
-        color: [textColor],
+        color: [color],
         size: getSize(sizeRatio),
         weight: defaultWeight,
       })
@@ -105,8 +105,8 @@ const Leon: React.FC<IProps> = ({ href }) => {
   }
 
   const render = () => {
-    requestAnimationFrame(render)
-    ctx.clearRect(0, 0, screenWidth, screenHeight)
+    raf = requestAnimationFrame(render)
+    if (ctx) ctx.clearRect(0, 0, screenWidth, screenHeight)
 
     const letterSpacing = 5
 
@@ -150,17 +150,24 @@ const Leon: React.FC<IProps> = ({ href }) => {
     }
   }
 
-  const reset = () => {
-    for (const a of firstName.leon) {
-      gsap.killTweensOf(a)
+  const stop = () => {
+    cancelAnimationFrame(raf)
+    raf = undefined
+
+    for (const l of firstName.leon) {
+      gsap.killTweensOf(l)
+      for (const d of l.drawing) {
+        gsap.killTweensOf(d)
+      }
     }
-    for (const b of lastName.leon) {
-      gsap.killTweensOf(b)
+    for (const l of lastName.leon) {
+      gsap.killTweensOf(l)
+      for (const d of l.drawing) {
+        gsap.killTweensOf(d)
+      }
     }
-    firstName.rect.h = firstName.rect.w = firstName.gap.x = firstName.gap.y = 0
-    lastName.rect.h = lastName.rect.w = lastName.gap.x = lastName.gap.y = 0
-    init()
-    animateDrawing()
+    gsap.killTweensOf(animateWeight)
+    gsap.killTweensOf(animateZoom)
   }
 
   const animateDrawing = () => {
@@ -171,7 +178,6 @@ const Leon: React.FC<IProps> = ({ href }) => {
 
     for (let i = 0; i < firstName.total; i++) {
       for (const d of firstName.leon[i].drawing) {
-        gsap.killTweensOf(d)
         gsap.fromTo(
           d,
           {
@@ -297,7 +303,7 @@ const Leon: React.FC<IProps> = ({ href }) => {
           if (href) {
             Router.push(href)
           } else {
-            reset()
+            stop()
           }
         },
       })
@@ -305,22 +311,21 @@ const Leon: React.FC<IProps> = ({ href }) => {
   }
 
   useEffect(() => {
-    const leonScript = document.createElement('script')
-    leonScript.src = '/lib/leon.js'
-    leonScript.async = true
-    leonScript.onload = () => {
-      init()
-      requestAnimationFrame(render)
-      animateDrawing()
-    }
-    document.body.appendChild(leonScript)
     window.addEventListener('resize', canvasResize, false)
-
     return () => {
       window.removeEventListener('resize', canvasResize, false)
-      document.body.removeChild(leonScript)
     }
   }, [])
+
+  useEffect(() => {
+    start()
+    raf = requestAnimationFrame(render)
+    animateDrawing()
+
+    return () => {
+      stop()
+    }
+  }, [color])
 
   useEffect(() => {
     if (href) {

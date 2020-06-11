@@ -1,13 +1,22 @@
 import Layout from '@/components/core/Layout'
 import Leon from '@/components/Leon'
 import { useTheme } from 'emotion-theming'
+import useScript from 'react-script-hook'
+
 import { Theme } from '@/theme'
 
 export default function Home(): JSX.Element {
   const theme = useTheme<Theme>()
+  const [loading, error] = useScript({
+    src: '/lib/leon.js',
+    checkForExisting: true,
+  })
+
   return (
     <Layout bg="backgroundInverse" fullScreen>
-      <Leon href="/hello" color={theme.colors.background} />
+      {!loading && !error && (
+        <Leon color={theme.colors.background} href="/hello" />
+      )}
     </Layout>
   )
 }
