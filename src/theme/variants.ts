@@ -5,7 +5,7 @@ const variants = {
     p: 2,
     color: 'inherit',
     textDecoration: 'none',
-    transition: 'all .2s ease-in',
+    transition: 'all 0.2s ease',
     ':hover,:focus,:active': {
       color: 'primary.500',
     },
