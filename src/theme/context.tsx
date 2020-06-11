@@ -11,13 +11,16 @@ interface IThemeState {
 }
 
 const ThemeContext = React.createContext<IThemeState | undefined>(undefined)
-const useTheme = () => React.useContext(ThemeContext)
+const useThemeToggle = () => React.useContext(ThemeContext)
 
 const useThemeState = () => {
   const [theme, setTheme] = React.useState<ThemeVariants>('dark')
 
   React.useEffect(() => {
-    setTheme((localStorage.getItem('theme') as ThemeVariants) || theme)
+    const lsTheme = localStorage.getItem('theme') as ThemeVariants
+    if (lsTheme != theme) {
+      setTheme(lsTheme)
+    }
   }, [])
 
   return [theme, setTheme] as [
@@ -50,4 +53,4 @@ const ThemeProvider = ({ children }) => {
   )
 }
 
-export { ThemeProvider, useTheme }
+export { ThemeProvider, useThemeToggle }

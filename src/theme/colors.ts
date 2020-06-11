@@ -106,8 +106,8 @@ const hues = {
 const colors = {
   transparent: 'transparent',
   current: 'currentColor',
-  black: '#000',
-  white: '#fff',
+  black: '#000000',
+  white: '#ffffff',
   softBlack: '#16161D',
   accent: '#553555',
 }
@@ -115,6 +115,7 @@ const colors = {
 export const colorsDark = {
   ...colors,
   background: colors.black,
+  backgroundInverse: colors.white,
   text: colors.white,
   gray: hues.gray,
   primary: hues.rose,
@@ -124,6 +125,8 @@ export const colorsDark = {
 export const colorsLight = {
   ...colors,
   background: colors.white,
+  backgroundInverse: colors.black,
+
   text: colors.softBlack,
   gray: hues.gray,
   primary: hues.rose,

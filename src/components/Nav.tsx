@@ -3,7 +3,7 @@ import Container from './core/Container'
 import RouteLink from './core/RouteLink'
 import Logo from './Logo'
 import { useRouter } from 'next/router'
-import { useTheme } from '@/theme'
+import { useThemeToggle } from '@/theme'
 
 const NavLink: React.FC<LinkProps> = ({ ...props }) => {
   const router = useRouter()
@@ -17,7 +17,7 @@ const NavLink: React.FC<LinkProps> = ({ ...props }) => {
 }
 
 const Nav = () => {
-  const { theme, toggle } = useTheme()
+  const { theme, toggle } = useThemeToggle()
 
   return (
     <Box as="nav" py={2}>
