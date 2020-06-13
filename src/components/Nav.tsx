@@ -1,6 +1,7 @@
 import { Box, Flex, LinkProps, Button } from 'rebass'
 import { useRouter } from 'next/router'
 import { FiMenu, FiX } from 'react-icons/fi'
+import { FocusOn } from 'react-focus-on'
 
 import Container from './core/Container'
 import RouteLink from './core/RouteLink'
@@ -36,6 +37,7 @@ const NavLink: React.FC<{ mobile?: boolean } & LinkProps> = ({
   return (
     <RouteLink
       variant={mobile ? 'mobileNav' : 'nav'}
+      role={mobile ? 'menuItem' : null}
       color={router.pathname?.includes(props.href) ? 'primary.500' : 'inherit'}
       {...props}
     />
@@ -49,47 +51,54 @@ interface IMobileNavProps {
 
 const MobileNav: React.FC<IMobileNavProps> = ({ isOpen, onClose }) => {
   return (
-    <Box
-      sx={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: isOpen ? '100vh' : 0,
-        backgroundColor: 'backgroundInverse',
-        color: 'background',
-        overflow: 'hidden',
-        transition: 'height .3s ease',
-      }}
-    >
-      <Button
-        variant="nav"
-        onClick={onClose}
+    <FocusOn enabled={isOpen} autoFocus returnFocus onEscapeKey={onClose}>
+      <Box
         sx={{
-          position: 'absolute',
-          fontSize: 'xl',
-          top: 2,
-          right: 2,
-          padding: 2,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '100vh',
+          backgroundColor: 'backgroundInverse',
+          color: 'background',
+          overflow: 'hidden',
+          transition: 'transform .3s ease',
+          transform: `translateY(${isOpen ? '0' : '-100'}%)`,
         }}
+        id="menu"
+        role="menu"
+        aria-labelledby="menubutton"
       >
-        <FiX />
-      </Button>
-      <Flex flexDirection="column" alignItems="center" mt={16}>
-        {routes.map((route) => {
-          return (
-            <NavLink mobile key={route.href} href={route.href}>
-              {route.label}
-            </NavLink>
-          )
-        })}
-      </Flex>
-    </Box>
+        <Button
+          variant="nav"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            fontSize: 'xl',
+            top: 2,
+            right: 2,
+            padding: 2,
+          }}
+        >
+          <FiX />
+        </Button>
+        <Flex flexDirection="column" alignItems="center" mt={16}>
+          {routes.map((route) => {
+            return (
+              <NavLink mobile key={route.href} href={route.href}>
+                {route.label}
+              </NavLink>
+            )
+          })}
+        </Flex>
+      </Box>
+    </FocusOn>
   )
 }
 
 const Nav: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
       <MobileNav isOpen={isOpen} onClose={onClose} />
@@ -123,10 +132,16 @@ const Nav: React.FC = () => {
             })}
             <ThemeSwitcher />
             <Button
+              id="menubutton"
               variant="nav"
               fontSize="xl"
               onClick={onOpen}
               display={['inline-block', null, 'none']}
+              role="button"
+              aria-label="menu"
+              aria-haspopup="true"
+              aria-controls="menu"
+              aria-expanded={isOpen ? 'true' : null}
             >
               <FiMenu />
             </Button>

@@ -15,7 +15,7 @@ const makeGlobalStyles = (theme: Theme) => css`
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: hidden auto;
     outline: 0;
     transition: background-color 0.2s ease;
     background-color: ${theme.colors.background};
