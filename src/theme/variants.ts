@@ -10,6 +10,19 @@ export const variants = {
       color: 'primary.500',
     },
   },
+  mobileNav: {
+    fontSize: '2xl',
+    fontWeight: 'bold',
+    display: 'block',
+    px: 2,
+    py: 6,
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'all 0.2s ease',
+    ':hover,:focus,:active': {
+      color: 'primary.500',
+    },
+  },
 }
 export type Variants = typeof variants
 
