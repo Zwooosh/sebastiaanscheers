@@ -1,9 +1,12 @@
 import { Box, BoxProps } from 'rebass'
 import RouteLink from './core/RouteLink'
+import useBreakpoint from 'hooks/useBreakpoint'
 
 const Logo: React.FC<BoxProps> = (props) => {
+  const breakpoint = useBreakpoint()
+  const href = breakpoint.sm ? '/hello' : '/'
   return (
-    <RouteLink variant="nav" href="/">
+    <RouteLink variant="nav" href={href}>
       <Box size={8} {...props}>
         <svg
           width="100%"

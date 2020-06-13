@@ -27,7 +27,7 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
   let screenWidth: number
   let screenHeight: number
   let ctx: CanvasRenderingContext2D
-  let raf: number | undefined
+  const rafId = React.useRef<number>()
   const canvas = useRef<HTMLCanvasElement>()
 
   const firstNameText = 'Sebastiaan'.split('')
@@ -105,7 +105,7 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
   }
 
   const render = () => {
-    raf = requestAnimationFrame(render)
+    rafId.current = requestAnimationFrame(render)
     if (ctx) ctx.clearRect(0, 0, screenWidth, screenHeight)
 
     const letterSpacing = 5
@@ -151,8 +151,9 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
   }
 
   const stop = () => {
-    cancelAnimationFrame(raf)
-    raf = undefined
+    if (rafId.current) {
+      cancelAnimationFrame(rafId.current)
+    }
 
     for (const l of firstName.leon) {
       gsap.killTweensOf(l)
@@ -326,7 +327,7 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
 
   useEffect(() => {
     start()
-    raf = requestAnimationFrame(render)
+    rafId.current = requestAnimationFrame(render)
     animateDrawing()
 
     return () => {

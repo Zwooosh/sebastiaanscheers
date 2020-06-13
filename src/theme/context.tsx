@@ -5,6 +5,7 @@ import {
   useState,
   Dispatch,
   SetStateAction,
+  useCallback,
 } from 'react'
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
 import { themeSelect } from './index'
@@ -42,11 +43,11 @@ const useThemeState = () => {
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useThemeState()
 
-  const toggle = () => {
+  const toggle = useCallback(() => {
     const i = (themeVariants.indexOf(theme) + 1) % themeVariants.length
     const newTheme = themeVariants[i]
     setTheme(newTheme)
-  }
+  }, [theme])
 
   return (
     <EmotionThemeProvider theme={themeSelect(theme)}>
