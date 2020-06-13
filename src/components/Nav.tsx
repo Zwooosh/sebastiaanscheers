@@ -56,8 +56,8 @@ const MobileNav: React.FC<IMobileNavProps> = ({ isOpen, onClose }) => {
         left: 0,
         right: 0,
         height: isOpen ? '100vh' : 0,
-        backgroundColor: 'white',
-        color: 'black',
+        backgroundColor: 'backgroundInverse',
+        color: 'background',
         overflow: 'hidden',
         transition: 'height .3s ease',
       }}
