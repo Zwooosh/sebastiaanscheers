@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { useTheme } from 'emotion-theming'
 
 import { Theme } from '@/theme'
-import { breakpointAliases } from '@/theme/breakpoints'
+import { breakpointAliases, BreakpointAliases } from '@/theme/breakpoints'
 import { useSafeLayoutEffect } from './useSafeLayoutEffect'
 
 const toPx = (breakpoint: string) => parseInt(breakpoint) * 16
@@ -38,7 +38,7 @@ const useBreakpoint = () => {
 
   return breakpointAliases.reduce((acc, val) => {
     return { ...acc, [val]: val === activeBreakpoint }
-  }, {})
+  }, {}) as { [key in BreakpointAliases]: boolean }
 }
 
 export default useBreakpoint

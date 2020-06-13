@@ -6,7 +6,7 @@ import Container from './core/Container'
 import RouteLink from './core/RouteLink'
 import Logo from './Logo'
 import ThemeSwitcher from './ThemeSwitcher'
-import useDisclosure from 'hooks/useDisclosure'
+import useDisclosure from '@/hooks/useDisclosure'
 
 const routes = [
   {

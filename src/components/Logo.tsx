@@ -1,6 +1,6 @@
 import { Box, BoxProps } from 'rebass'
 import RouteLink from './core/RouteLink'
-import useBreakpoint from 'hooks/useBreakpoint'
+import useBreakpoint from '@/hooks/useBreakpoint'
 
 const Logo: React.FC<BoxProps> = (props) => {
   const breakpoint = useBreakpoint()
