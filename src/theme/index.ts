@@ -7,6 +7,7 @@ import typography from './typography'
 import zIndices from './zIndices'
 import { variants, buttons } from './variants'
 import { useThemeToggle, ThemeProvider, ThemeVariants } from './context'
+import styled, { CreateStyled } from '@emotion/styled'
 
 const themeDark = {
   breakpoints,
@@ -36,3 +37,5 @@ export const themeSelect = (mode: ThemeVariants) =>
   (themes[mode] || themeDark) as Theme
 
 export { ThemeProvider, useThemeToggle }
+
+export default styled as CreateStyled<Theme>

@@ -116,6 +116,7 @@ export const colorsDark = {
   ...colors,
   background: colors.black,
   backgroundInverse: colors.white,
+  backgroundAccent: hues.gray[800],
   text: colors.white,
   gray: hues.gray,
   primary: hues.rose,
@@ -126,7 +127,7 @@ export const colorsLight = {
   ...colors,
   background: colors.white,
   backgroundInverse: colors.black,
-
+  backgroundAccent: hues.gray[100],
   text: colors.softBlack,
   gray: hues.gray,
   primary: hues.rose,

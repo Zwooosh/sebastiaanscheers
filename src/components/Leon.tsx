@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import Router from 'next/router'
-import styled from '@emotion/styled'
+import styled from '@/theme'
 
 declare global {
   interface Window {

@@ -1,12 +1,12 @@
 import Layout from '@/components/core/Layout'
 import Container from '@/components/core/Container'
-import { Box } from 'rebass'
+import Hero from '@/components/Hero'
 
 export default function Hello(): JSX.Element {
   return (
     <Layout>
       <Container>
-        <Box height={'2000px'}>Hello</Box>
+        <Hero />
       </Container>
     </Layout>
   )
