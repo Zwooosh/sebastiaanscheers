@@ -26,18 +26,18 @@ const useThemeState = () => {
 
   useEffect(() => {
     const lsTheme = localStorage.getItem('theme') as ThemeVariants
-    if (lsTheme == null || lsTheme !== theme) {
+    if (lsTheme == null) {
       localStorage.setItem('theme', theme)
     } else {
-      const lsTheme = localStorage.getItem('theme') as ThemeVariants
       setTheme(lsTheme)
     }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
   }, [theme])
 
-  return [theme, setTheme] as [
-    ThemeVariants,
-    Dispatch<SetStateAction<ThemeVariants>>
-  ]
+  return [theme, setTheme] as const
 }
 
 const ThemeProvider = ({ children }) => {

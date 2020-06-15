@@ -19,6 +19,7 @@ const SocialLink = ({ icon: Icon, href }: IProps) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      fontSize="xl"
     >
       <Icon />
     </PopupLink>
