@@ -37,7 +37,7 @@ const Link: FC<ILinkProps> = ({ external, href, ...rest }) => {
 const HyperLink = styled(Box)(
   ({ active }: ILinkProps) =>
     css({
-      fontWeight: 'bold',
+      fontWeight: 'semibold',
       display: 'inline-block',
       color: active ? 'primary.500' : 'inherit',
       textDecoration: 'none',

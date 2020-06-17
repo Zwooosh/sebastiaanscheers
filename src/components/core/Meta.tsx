@@ -4,6 +4,10 @@ export default function Meta() {
   return (
     <Head>
       <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&family=Roboto+Mono:ital@0;1&display=swap"
+        rel="stylesheet"
+      />
+      <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="/favicon/apple-touch-icon.png"
@@ -30,7 +34,6 @@ export default function Meta() {
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#000" />
-      {/* <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> */}
       <meta name="description" content="Freelance Front-end Developer" />
       <meta property="og:image" content="/favicon/android-chrome-192x192.png" />
       <title>Sebastiaan Scheers</title>

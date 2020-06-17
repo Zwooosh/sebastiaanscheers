@@ -120,7 +120,7 @@ export const colorsDark = {
   text: colors.white,
   gray: hues.gray,
   primary: hues.rose,
-  secondary: hues.mint,
+  secondary: hues.cyan,
 }
 
 export const colorsLight = {
@@ -131,7 +131,7 @@ export const colorsLight = {
   text: colors.softBlack,
   gray: hues.gray,
   primary: hues.rose,
-  secondary: hues.mint,
+  secondary: hues.cyan,
 }
 
 export type Colors = typeof colorsDark

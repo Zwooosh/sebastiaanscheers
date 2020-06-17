@@ -10,8 +10,7 @@ const makeGlobalStyles = (theme: Theme) => css`
   #__next {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: ${theme.fonts.body};
     width: 100%;
     height: 100%;
     min-height: 100vh;
@@ -20,6 +19,14 @@ const makeGlobalStyles = (theme: Theme) => css`
     transition: background-color 0.2s ease;
     background-color: ${theme.colors.background};
     color: ${theme.colors.text};
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: ${theme.colors.secondary[300]};
   }
 
   * {
