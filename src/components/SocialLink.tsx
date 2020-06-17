@@ -1,19 +1,21 @@
 import React from 'react'
-import { Link } from 'rebass'
 import { IconType } from 'react-icons/lib'
-
 import styled from '@/theme'
+
+import Link from './Link'
 
 interface IProps {
   icon: IconType
   href: string
+  className?: string
 }
 
 const stripUrl = (url: string) => url.replace(/^(https?:\/\/)/, '')
 
-const SocialLink = ({ icon: Icon, href }: IProps) => {
+const SocialLink = ({ icon: Icon, href, className }: IProps) => {
   return (
     <PopupLink
+      className={className}
       variant="nav"
       data-title={stripUrl(href)}
       href={href}
@@ -34,7 +36,7 @@ const PopupLink = styled(Link)`
   &:hover {
     &:before {
       opacity: 1;
-      transform: translate3d(-50%, 0, 0);
+      transform: translate3d(-50%, 0, 0) scale(1);
       white-space: nowrap;
     }
   }
@@ -53,7 +55,8 @@ const PopupLink = styled(Link)`
     border-radius: ${({ theme }) => theme.radii.sm};
     opacity: 0;
     transition: opacity 150ms linear, transform 150ms linear;
-    transform: translate3d(-50%, -${({ theme }) => theme.sizes[2]}, 0);
+    transform: translate3d(-50%, -${({ theme }) => theme.sizes[2]}, 0)
+      scale(0.9);
     z-index: ${({ theme }) => theme.zIndices.absolute};
   }
 `

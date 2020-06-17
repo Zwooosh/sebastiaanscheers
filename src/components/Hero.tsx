@@ -1,5 +1,4 @@
 import React from 'react'
-import { Image, Box, Flex, Text, Heading } from 'rebass'
 import {
   FaLinkedin,
   FaGithub,
@@ -9,6 +8,7 @@ import {
 } from 'react-icons/fa'
 
 import SocialLink from './SocialLink'
+import { Space, Flex, Box, Heading, Text, Image } from './styled'
 
 const Hero = () => {
   return (
@@ -36,20 +36,22 @@ const Hero = () => {
       </Heading>
       <Text>Freelance Front-end Developer</Text>
       <Flex py={2}>
-        <SocialLink
-          icon={FaLinkedin}
-          href="https://linkedin.com/in/sebasscheers"
-        />
-        <SocialLink icon={FaGithub} href="https://github.com/zwooosh" />
-        <SocialLink icon={FaTwitter} href="https://twitter.com/zwooosh" />
-        <SocialLink
-          icon={FaInstagram}
-          href="https://instagram.com/zeebaarstiaan"
-        />
-        <SocialLink
-          icon={FaSpotify}
-          href="https://open.spotify.com/user/zeebaarstiaan"
-        />
+        <Space mx={1}>
+          <SocialLink
+            icon={FaLinkedin}
+            href="https://linkedin.com/in/sebasscheers"
+          />
+          <SocialLink icon={FaGithub} href="https://github.com/zwooosh" />
+          <SocialLink icon={FaTwitter} href="https://twitter.com/zwooosh" />
+          <SocialLink
+            icon={FaInstagram}
+            href="https://instagram.com/zeebaarstiaan"
+          />
+          <SocialLink
+            icon={FaSpotify}
+            href="https://open.spotify.com/user/zeebaarstiaan"
+          />
+        </Space>
       </Flex>
     </Flex>
   )

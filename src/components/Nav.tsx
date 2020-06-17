@@ -1,13 +1,14 @@
-import { Box, Flex, LinkProps, Button } from 'rebass'
 import { useRouter } from 'next/router'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { FocusOn } from 'react-focus-on'
 
+import useDisclosure from '@/hooks/useDisclosure'
 import Container from './core/Container'
-import RouteLink from './core/RouteLink'
+import { Box, Flex } from './styled'
 import Logo from './Logo'
 import ThemeSwitcher from './ThemeSwitcher'
-import useDisclosure from '@/hooks/useDisclosure'
+import Link, { ILinkProps } from './Link'
+import Button from './Button'
 
 const routes = [
   {
@@ -29,16 +30,16 @@ const routes = [
   },
 ]
 
-const NavLink: React.FC<{ mobile?: boolean } & LinkProps> = ({
+const NavLink: React.FC<{ mobile?: boolean } & ILinkProps> = ({
   mobile,
   ...props
 }) => {
   const router = useRouter()
   return (
-    <RouteLink
+    <Link
       variant={mobile ? 'mobileNav' : 'nav'}
       role={mobile ? 'menuItem' : null}
-      color={router.pathname?.includes(props.href) ? 'primary.500' : 'inherit'}
+      active={router.pathname?.includes(props.href)}
       {...props}
     />
   )
@@ -55,6 +56,7 @@ const MobileNav: React.FC<IMobileNavProps> = ({ isOpen, onClose }) => {
       <Box
         sx={{
           position: 'fixed',
+          zIndex: 'fixed',
           top: 0,
           left: 0,
           right: 0,

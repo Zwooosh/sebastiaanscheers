@@ -3,8 +3,6 @@ import {
   createContext,
   useContext,
   useState,
-  Dispatch,
-  SetStateAction,
   useCallback,
 } from 'react'
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'

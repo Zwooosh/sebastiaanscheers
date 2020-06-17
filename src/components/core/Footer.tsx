@@ -1,4 +1,3 @@
-import { Text } from 'rebass'
 import Container from './Container'
 
 const Footer = () => {
@@ -12,7 +11,7 @@ const Footer = () => {
         pb={2}
         fontSize="sm"
       >
-        <Text>&copy; {currentYear} - Sebastiaan Scheers</Text>
+        <span>&copy; {currentYear} - Sebastiaan Scheers</span>
       </Container>
     </footer>
   )

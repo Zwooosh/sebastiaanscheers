@@ -1,4 +1,4 @@
-import { Button } from 'rebass'
+import Button from './Button'
 import { FiMoon, FiSun } from 'react-icons/fi'
 
 import { useThemeToggle } from '@/theme'

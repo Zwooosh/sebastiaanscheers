@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box, Flex, FlexProps } from 'rebass'
+import { FC } from 'react'
 
+import { IBoxProps, Flex, Box } from '../styled'
 import Meta from './Meta'
 import Nav from '../Nav'
 import Footer from './Footer'
 
-interface IProps extends FlexProps {
+interface IProps extends IBoxProps {
   fullScreen?: boolean
 }
 
-const Layout: React.FC<IProps> = ({ children, fullScreen, ...rest }) => {
+const Layout: FC<IProps> = ({ children, fullScreen, ...rest }) => {
   return (
     <>
       <Meta />

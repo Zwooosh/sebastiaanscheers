@@ -5,7 +5,6 @@ import shadows from './shadows'
 import sizes, { baseSizes } from './sizes'
 import typography from './typography'
 import zIndices from './zIndices'
-import { variants, buttons } from './variants'
 import { useThemeToggle, ThemeProvider, ThemeVariants } from './context'
 import styled, { CreateStyled } from '@emotion/styled'
 
@@ -18,8 +17,6 @@ const themeDark = {
   sizes,
   shadows,
   space: baseSizes,
-  variants,
-  buttons,
 }
 
 const themeLight = {
