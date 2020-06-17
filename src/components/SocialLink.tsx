@@ -15,13 +15,14 @@ const stripUrl = (url: string) => url.replace(/^(https?:\/\/)/, '')
 const SocialLink = ({ icon: Icon, href, className }: IProps) => {
   return (
     <PopupLink
-      className={className}
       variant="nav"
+      className={className}
       data-title={stripUrl(href)}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       fontSize="xl"
+      lineHeight={0}
     >
       <Icon />
     </PopupLink>
@@ -43,6 +44,7 @@ const PopupLink = styled(Link)`
 
   &:before {
     content: attr(data-title);
+    pointer-events: none;
     display: inline-block;
     position: absolute;
     bottom: -${({ theme }) => theme.sizes[8]};

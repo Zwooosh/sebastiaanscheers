@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { TypographyProps } from 'styled-system'
+import { typography, TypographyProps } from 'styled-system'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
@@ -31,16 +31,18 @@ export type HeadingProps = TextProps &
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   }
 
-export const Text = styled(Box)<TextProps>`
-  ${(props) =>
+export const Text = styled(Box)<TextProps>(
+  (props) =>
     props.singleLine &&
     css`
       max-width: 100%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    `}
-`
+    `,
+  typography
+)
+
 export const Paragraph = styled(Text)({})
 
 export const Heading = styled(Text)<HeadingProps>({})

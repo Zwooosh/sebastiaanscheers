@@ -31,11 +31,11 @@ const Hero = () => {
           src="/sebastiaan-scheers.png"
         />
       </Box>
-      <Heading as="h1" fontSize="2xl" mb={2}>
+      <Heading as="h1" fontSize="3xl" textAlign="center" mb={2}>
         Sebastiaan Scheers
       </Heading>
       <Text>Freelance Front-end Developer</Text>
-      <Flex py={2}>
+      <Flex py={4}>
         <Space mx={1}>
           <SocialLink
             icon={FaLinkedin}
