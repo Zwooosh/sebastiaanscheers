@@ -21,11 +21,14 @@ type BoxProps = React.RefAttributes<any> &
   FlexboxProps
 
 export interface IBoxProps extends BoxProps {
+  _css?: SystemStyleObject
   sx?: SystemStyleObject
 }
 
 const sx = (props: { sx: SystemStyleObject; theme: Theme }) =>
   css(props.sx)(props.theme)
+const _css = (props: { _css: SystemStyleObject; theme: Theme }) =>
+  css(props._css)(props.theme)
 export const Box = styled('div', {
   shouldForwardProp,
 })(
@@ -33,6 +36,7 @@ export const Box = styled('div', {
     boxSizing: 'border-box',
     minWidth: 0,
   },
+  _css,
   sx,
   compose(space, color, layout, flexbox)
 )

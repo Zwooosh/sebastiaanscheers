@@ -8,7 +8,9 @@ import {
 } from 'react-icons/fa'
 
 import SocialLink from './SocialLink'
-import { Space, Flex, Box, Heading, Text, Image } from './styled'
+import Image from './Image'
+import { Space, Flex, Box, Heading, Text } from './styled'
+import { AspectRatio } from './AspectRatio'
 
 const Hero = () => {
   return (
@@ -17,19 +19,22 @@ const Hero = () => {
         sx={{
           position: 'relative',
           backgroundColor: 'backgroundInverse',
-          maxWidth: 'md',
-          maxHeight: 'md',
+          width: 'md',
+          height: 'md',
           borderRadius: 'full',
           overflow: 'hidden',
           marginBottom: 4,
         }}
       >
-        <Image
-          sx={{
-            transform: 'translateY(8px)',
-          }}
-          src="/sebastiaan-scheers.png"
-        />
+        <AspectRatio>
+          <Image
+            sx={{
+              transform: 'translateY(8px)',
+            }}
+            src={require('images/profile.png')}
+            fallbackSrc={require('images/profile.png?lqip')}
+          />
+        </AspectRatio>
       </Box>
       <Heading as="h1" fontSize="3xl" textAlign="center" mb={2}>
         Sebastiaan Scheers
