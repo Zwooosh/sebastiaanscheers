@@ -1,8 +1,11 @@
-import React, { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import styled from '@emotion/styled'
+import { FiSkipForward } from 'react-icons/fi'
 
+import styled from 'theme'
 import { useIntroContext } from 'context/IntroContext'
+import { MotionButton } from './Button'
+import { Text, Box } from './styled'
 
 declare global {
   interface Window {
@@ -18,7 +21,7 @@ interface IFont {
 }
 
 interface IProps {
-  onComplete?: () => void
+  onComplete: () => void
   color: string
 }
 
@@ -34,7 +37,7 @@ const Leon: React.FC<IProps> = ({ onComplete, color }) => {
   let screenWidth: number
   let screenHeight: number
   let ctx: CanvasRenderingContext2D
-  const rafId = React.useRef<number>()
+  const rafId = useRef<number>()
   const canvas = useRef<HTMLCanvasElement>()
 
   const firstNameText = 'Sebastiaan'.split('')
@@ -315,13 +318,7 @@ const Leon: React.FC<IProps> = ({ onComplete, color }) => {
       delay: duration / 2,
       backgroundColor: color,
       ease: 'power4.in',
-      onComplete: function () {
-        if (onComplete) {
-          onComplete()
-        } else {
-          stop()
-        }
-      },
+      onComplete: onComplete,
     })
   }
 
@@ -342,7 +339,42 @@ const Leon: React.FC<IProps> = ({ onComplete, color }) => {
     }
   }, [color])
 
-  return <Canvas ref={canvas} />
+  return (
+    <>
+      <MotionButton
+        sx={{
+          position: 'fixed',
+          color: color,
+          bottom: 8,
+          right: 48,
+          fontSize: 'sm',
+          bg: 'transparent',
+          padding: 4,
+          ':hover, :focus, :active': {
+            bg: 'transparent',
+            color: 'primary.500',
+          },
+        }}
+        onClick={onComplete}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{
+          y: 50,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: { type: 'spring', stiffness: 200, delay: 1 },
+        }}
+      >
+        <Text display="flex" alignItems="center" mb={3}>
+          Skip animation <Box as={FiSkipForward} ml={1} />
+        </Text>
+      </MotionButton>
+      <Canvas ref={canvas} />
+    </>
+  )
 }
 
 export default Leon

@@ -1,9 +1,9 @@
 import React, { FC, ButtonHTMLAttributes } from 'react'
 import { typography, variant, TypographyProps } from 'styled-system'
-import css from '@styled-system/css'
 import styled from '@emotion/styled'
 
-import { Box, IBoxProps } from './styled'
+import { Box, IBoxProps, MotionBox } from './styled'
+import { MotionProps } from 'framer-motion'
 
 type ButtonProps = IBoxProps &
   TypographyProps &
@@ -12,31 +12,28 @@ export interface IButtonProps extends ButtonProps {
   variant?: string
 }
 
-const Button: FC<IButtonProps> = (props) => {
-  return <StyledButton {...props} />
+const baseCss = {
+  appearance: 'none',
+  display: 'inline-block',
+  textAlign: 'center',
+  lineHeight: 'inherit',
+  textDecoration: 'none',
+  fontSize: 'inherit',
+  px: 3,
+  py: 2,
+  color: 'white',
+  bg: 'primary',
+  border: 0,
+  borderRadius: 'md',
+  backgroundColor: 'primary.500',
+  cursor: 'pointer',
+  transition: 'color 0.2s ease, background 0.2s ease',
+  ':hover,:focus,:active': {
+    backgroundColor: 'primary.600',
+  },
 }
 
-const StyledButton = styled(Box)(
-  css({
-    appearance: 'none',
-    display: 'inline-block',
-    textAlign: 'center',
-    lineHeight: 'inherit',
-    textDecoration: 'none',
-    fontSize: 'inherit',
-    px: 3,
-    py: 2,
-    color: 'white',
-    bg: 'primary',
-    border: 0,
-    borderRadius: 'md',
-    backgroundColor: 'primary.500',
-    cursor: 'pointer',
-    transition: 'color 0.2s ease, background 0.2s ease',
-    ':hover,:focus,:active': {
-      backgroundColor: 'primary.600',
-    },
-  }),
+const overrides = [
   typography,
   variant({
     variants: {
@@ -53,8 +50,21 @@ const StyledButton = styled(Box)(
         },
       },
     },
-  })
-)
+  }),
+]
+
+const Button: FC<IButtonProps> = (props) => {
+  return <StyledButton _css={baseCss} {...props} />
+}
+
+export const MotionButton: FC<IButtonProps & MotionProps> = (props) => {
+  return <StyledMotionButton _css={baseCss} {...props} />
+}
+
+const StyledButton = styled(Box)(...overrides)
 StyledButton.defaultProps = { as: 'button' }
+
+const StyledMotionButton = styled(MotionBox)(...overrides)
+StyledMotionButton.defaultProps = { as: 'button' }
 
 export default Button
