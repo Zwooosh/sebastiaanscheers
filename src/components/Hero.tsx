@@ -27,11 +27,11 @@ const Hero = () => {
         sx={{
           position: 'relative',
           backgroundColor: 'backgroundInverse',
-          width: 'md',
-          height: 'md',
+          size: ['xs', 'sm', 'md'],
           borderRadius: 'full',
           overflow: 'hidden',
           marginBottom: 4,
+          transition: 'background-color 0.2s ease',
         }}
         variants={fadeInUp}
       >

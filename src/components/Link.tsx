@@ -1,6 +1,5 @@
 import NextLink from 'next/link'
 import { variant, typography, TypographyProps } from 'styled-system'
-import { css } from '@styled-system/css'
 import styled from '@emotion/styled'
 
 import { Box, IBoxProps } from './styled'
@@ -15,10 +14,21 @@ export interface ILinkProps extends LinkProps {
   active?: boolean
 }
 
-const Link: FC<ILinkProps> = ({ external, href, ...rest }) => {
+const Link: FC<ILinkProps> = ({ active, external, href, ...rest }) => {
+  const baseCss = {
+    fontWeight: 'semibold',
+    display: 'inline-block',
+    color: active ? 'primary.500' : 'inherit',
+    textDecoration: 'none',
+    transition: 'all 0.2s ease',
+    ':hover, :focus, :active': {
+      color: active ? 'primary.600' : 'primary.500',
+    },
+  }
   if (external || href.match(/^(https?:\/\/)/)) {
     return (
       <HyperLink
+        _css={baseCss}
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -29,23 +39,12 @@ const Link: FC<ILinkProps> = ({ external, href, ...rest }) => {
 
   return (
     <NextLink href={href} passHref>
-      <HyperLink {...rest} />
+      <HyperLink _css={baseCss} {...rest} />
     </NextLink>
   )
 }
 
 const HyperLink = styled(Box)(
-  ({ active }: ILinkProps) =>
-    css({
-      fontWeight: 'semibold',
-      display: 'inline-block',
-      color: active ? 'primary.500' : 'inherit',
-      textDecoration: 'none',
-      transition: 'all 0.2s ease',
-      ':hover, :focus, :active': {
-        color: active ? 'primary.600' : 'primary.500',
-      },
-    }),
   typography,
   variant({
     variants: {

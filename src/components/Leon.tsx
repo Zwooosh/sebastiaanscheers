@@ -345,8 +345,8 @@ const Leon: React.FC<IProps> = ({ onComplete, color }) => {
         sx={{
           position: 'fixed',
           color: color,
-          bottom: 8,
-          right: 48,
+          bottom: [4, null, 8],
+          right: [8, 12, 16, null, 48],
           fontSize: 'sm',
           bg: 'transparent',
           padding: 4,
