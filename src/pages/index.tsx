@@ -1,9 +1,9 @@
-import Layout from '@/components/core/Layout'
-import Leon from '@/components/Leon'
 import { useTheme } from 'emotion-theming'
 import useScript from 'react-script-hook'
 
 import { Theme } from '@/theme'
+import Layout from '@/components/core/Layout'
+import Leon from '@/components/Leon'
 
 export default function Home(): JSX.Element {
   const theme = useTheme<Theme>()
