@@ -1,3 +1,6 @@
+import styled, { CreateStyled } from '@emotion/styled'
+
+import { ThemeVariants } from 'shared/types'
 import breakpoints from './breakpoints'
 import { colorsDark, colorsLight } from './colors'
 import radii from './radii'
@@ -5,8 +8,6 @@ import shadows from './shadows'
 import sizes, { baseSizes } from './sizes'
 import typography from './typography'
 import zIndices from './zIndices'
-import { useThemeToggle, ThemeProvider, ThemeVariants } from './context'
-import styled, { CreateStyled } from '@emotion/styled'
 
 const themeDark = {
   breakpoints,
@@ -32,7 +33,5 @@ const themes: { [key in ThemeVariants]: Theme } = {
 
 export const themeSelect = (mode: ThemeVariants) =>
   (themes[mode] || themeDark) as Theme
-
-export { ThemeProvider, useThemeToggle }
 
 export default styled as CreateStyled<Theme>

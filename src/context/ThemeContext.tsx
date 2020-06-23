@@ -6,10 +6,9 @@ import {
   useCallback,
 } from 'react'
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
-import { themeSelect } from './index'
 
-const themeVariants = ['dark', 'light'] as const
-export type ThemeVariants = typeof themeVariants[number]
+import { themeSelect } from 'theme'
+import { ThemeVariants, themeVariants } from 'shared/types'
 
 interface IThemeState {
   theme: ThemeVariants

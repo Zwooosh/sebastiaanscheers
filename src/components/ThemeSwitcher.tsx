@@ -1,6 +1,6 @@
 import { FiMoon, FiSun } from 'react-icons/fi'
 
-import { useThemeToggle } from 'theme'
+import { useThemeToggle } from 'context/ThemeContext'
 import Button from './Button'
 
 const ThemeSwitcher = () => {

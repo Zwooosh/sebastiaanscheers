@@ -3,9 +3,9 @@ import { Global } from '@emotion/core'
 import { withTheme } from 'emotion-theming'
 import { AnimatePresence } from 'framer-motion'
 
-import { ThemeProvider } from 'theme'
-import { makeGlobalStyles } from 'shared/styles'
+import { ThemeProvider } from 'context/ThemeContext'
 import { IntroProvider } from 'context/IntroContext'
+import { makeGlobalStyles } from 'shared/styles'
 
 const GlobalStyles = withTheme(({ theme }) => (
   <Global styles={makeGlobalStyles(theme)} />
