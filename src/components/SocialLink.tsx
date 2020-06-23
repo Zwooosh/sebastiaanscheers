@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconType } from 'react-icons/lib'
-import styled from '@/theme'
+import styled from 'theme'
 
 import Link from './Link'
 

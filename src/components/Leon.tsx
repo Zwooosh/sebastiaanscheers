@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import Router from 'next/router'
 import styled from '@emotion/styled'
 
-import { useAfterIntroContext } from 'context/AfterIntroContext'
+import { useIntroContext } from 'context/IntroContext'
 
 declare global {
   interface Window {
@@ -19,15 +18,15 @@ interface IFont {
 }
 
 interface IProps {
-  href?: string
+  onComplete?: () => void
   color: string
 }
 
-const Leon: React.FC<IProps> = ({ href, color }) => {
-  const { setAfterIntro } = useAfterIntroContext()
+const Leon: React.FC<IProps> = ({ onComplete, color }) => {
+  const { setIsAfterIntro } = useIntroContext()
 
   useEffect(() => {
-    setAfterIntro(true)
+    setIsAfterIntro(true)
   })
 
   const pixelRatio = 2
@@ -317,8 +316,8 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
       backgroundColor: color,
       ease: 'power4.in',
       onComplete: function () {
-        if (href) {
-          Router.push(href)
+        if (onComplete) {
+          onComplete()
         } else {
           stop()
         }
@@ -342,12 +341,6 @@ const Leon: React.FC<IProps> = ({ href, color }) => {
       stop()
     }
   }, [color])
-
-  useEffect(() => {
-    if (href) {
-      Router.prefetch(href)
-    }
-  }, [href])
 
   return <Canvas ref={canvas} />
 }

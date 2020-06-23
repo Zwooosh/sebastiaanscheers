@@ -1,5 +1,5 @@
 import { css } from '@emotion/core'
-import { Theme } from '@/theme'
+import { Theme } from 'theme'
 
 export const makeGlobalStyles = (theme: Theme) => css`
   html,

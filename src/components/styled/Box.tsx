@@ -1,4 +1,3 @@
-import styled, { Theme } from '@/theme'
 import {
   space,
   color,
@@ -13,6 +12,8 @@ import {
 import shouldForwardProp from '@styled-system/should-forward-prop'
 import { css, SystemStyleObject } from '@styled-system/css'
 import { motion } from 'framer-motion'
+
+import styled, { Theme } from 'theme'
 
 type BoxProps = React.RefAttributes<any> &
   React.HTMLAttributes<any> &

@@ -1,6 +1,6 @@
 import { ImgHTMLAttributes, forwardRef } from 'react'
 
-import { IUseImageProps, useImage } from '@/hooks/useImage'
+import { IUseImageProps, useImage } from 'hooks/useImage'
 import { IBoxProps, Box } from './styled'
 
 type ImageProps = IBoxProps &

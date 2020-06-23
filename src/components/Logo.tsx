@@ -1,12 +1,9 @@
 import { Box, IBoxProps } from './styled'
-import useBreakpoint from '@/hooks/useBreakpoint'
 import Link from './Link'
 
-const Logo: React.FC<IBoxProps> = (props) => {
-  const breakpoint = useBreakpoint()
-  const href = breakpoint.sm ? '/hello' : '/'
+const Logo = (props: IBoxProps) => {
   return (
-    <Link variant="nav" href={href}>
+    <Link variant="nav" href="/">
       <Box size={8} {...props}>
         <svg
           width="100%"

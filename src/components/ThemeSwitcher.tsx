@@ -1,7 +1,7 @@
-import Button from './Button'
 import { FiMoon, FiSun } from 'react-icons/fi'
 
-import { useThemeToggle } from '@/theme'
+import { useThemeToggle } from 'theme'
+import Button from './Button'
 
 const ThemeSwitcher = () => {
   const { theme, toggle } = useThemeToggle()

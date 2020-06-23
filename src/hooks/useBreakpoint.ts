@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import { useTheme } from 'emotion-theming'
 
-import { Theme } from '@/theme'
-import { breakpointAliases, BreakpointAliases } from '@/theme/breakpoints'
+import { Theme } from 'theme'
+import { breakpointAliases, BreakpointAliases } from 'theme/breakpoints'
 import { useSafeLayoutEffect } from './useSafeLayoutEffect'
 
 const toPx = (breakpoint: string) => parseInt(breakpoint) * 16

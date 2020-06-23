@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { FocusOn } from 'react-focus-on'
 
-import useDisclosure from '@/hooks/useDisclosure'
+import useDisclosure from 'hooks/useDisclosure'
 import Container from './core/Container'
 import { Box, Flex, MotionBox } from './styled'
 import Logo from './Logo'
@@ -11,13 +11,9 @@ import Link, { ILinkProps } from './Link'
 import Button from './Button'
 import { useEffect } from 'react'
 import { fadeIn } from 'shared/animations'
-import { useAfterIntroContext } from 'context/AfterIntroContext'
+import { useIntroContext } from 'context/IntroContext'
 
 const routes = [
-  {
-    href: '/hello',
-    label: 'about me',
-  },
   {
     href: '/projects',
     label: 'projects',
@@ -103,11 +99,11 @@ const MobileNav: React.FC<IMobileNavProps> = ({ isOpen, onClose }) => {
 
 const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { isAfterIntro, setAfterIntro } = useAfterIntroContext()
+  const { isAfterIntro, setIsAfterIntro } = useIntroContext()
 
   useEffect(() => {
     if (isAfterIntro) {
-      setAfterIntro(false)
+      setIsAfterIntro(false)
     }
   })
 

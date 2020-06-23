@@ -1,5 +1,5 @@
-import Layout from '@/components/core/Layout'
-import Container from '@/components/core/Container'
+import Layout from 'components/core/Layout'
+import Container from 'components/core/Container'
 
 export default function Contact(): JSX.Element {
   return (

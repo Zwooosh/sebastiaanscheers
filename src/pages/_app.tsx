@@ -3,9 +3,9 @@ import { Global } from '@emotion/core'
 import { withTheme } from 'emotion-theming'
 import { AnimatePresence } from 'framer-motion'
 
-import { ThemeProvider } from '@/theme'
+import { ThemeProvider } from 'theme'
 import { makeGlobalStyles } from 'shared/styles'
-import { AfterIntroProvider } from 'context/AfterIntroContext'
+import { IntroProvider } from 'context/IntroContext'
 
 const GlobalStyles = withTheme(({ theme }) => (
   <Global styles={makeGlobalStyles(theme)} />
@@ -17,11 +17,11 @@ export default class MyApp extends App {
     return (
       <ThemeProvider>
         <GlobalStyles />
-        <AfterIntroProvider>
+        <IntroProvider>
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} key={router.route} />
           </AnimatePresence>
-        </AfterIntroProvider>
+        </IntroProvider>
       </ThemeProvider>
     )
   }
