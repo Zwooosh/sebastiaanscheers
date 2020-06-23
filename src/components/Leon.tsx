@@ -3,6 +3,8 @@ import { gsap } from 'gsap'
 import Router from 'next/router'
 import styled from '@emotion/styled'
 
+import { useAfterIntroContext } from 'context/AfterIntroContext'
+
 declare global {
   interface Window {
     LeonSans: any
@@ -22,6 +24,12 @@ interface IProps {
 }
 
 const Leon: React.FC<IProps> = ({ href, color }) => {
+  const { setAfterIntro } = useAfterIntroContext()
+
+  useEffect(() => {
+    setAfterIntro(true)
+  })
+
   const pixelRatio = 2
   const defaultWeight = 200
   let screenWidth: number

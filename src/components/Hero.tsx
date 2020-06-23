@@ -6,16 +6,24 @@ import {
   FaInstagram,
   FaSpotify,
 } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 import SocialLink from './SocialLink'
 import Image from './Image'
-import { Space, Flex, Box, Heading, Text } from './styled'
+import { Space, MotionBox, MotionFlex, Heading, Text } from './styled'
 import { AspectRatio } from './AspectRatio'
+import { fadeInUp, staggerChildren } from 'shared/animations'
 
 const Hero = () => {
   return (
-    <Flex flexDirection="column" alignItems="center" mx="auto" py={6}>
-      <Box
+    <MotionFlex
+      flexDirection="column"
+      alignItems="center"
+      mx="auto"
+      py={6}
+      variants={staggerChildren}
+    >
+      <MotionBox
         sx={{
           position: 'relative',
           backgroundColor: 'backgroundInverse',
@@ -25,6 +33,7 @@ const Hero = () => {
           overflow: 'hidden',
           marginBottom: 4,
         }}
+        variants={fadeInUp}
       >
         <AspectRatio>
           <Image
@@ -35,12 +44,16 @@ const Hero = () => {
             fallbackSrc={require('images/profile.png?lqip')}
           />
         </AspectRatio>
-      </Box>
-      <Heading as="h1" fontSize="3xl" textAlign="center" mb={2}>
-        Sebastiaan Scheers
-      </Heading>
-      <Text>Freelance Front-end Developer</Text>
-      <Flex py={4}>
+      </MotionBox>
+      <motion.div variants={fadeInUp}>
+        <Heading as="h1" fontSize="3xl" textAlign="center" mb={2}>
+          Sebastiaan Scheers
+        </Heading>
+      </motion.div>
+      <motion.div variants={fadeInUp}>
+        <Text>Freelance Front-end Developer</Text>
+      </motion.div>
+      <MotionFlex variants={fadeInUp} py={4}>
         <Space mx={1}>
           <SocialLink
             icon={FaLinkedin}
@@ -57,8 +70,8 @@ const Hero = () => {
             href="https://open.spotify.com/user/zeebaarstiaan"
           />
         </Space>
-      </Flex>
-    </Flex>
+      </MotionFlex>
+    </MotionFlex>
   )
 }
 

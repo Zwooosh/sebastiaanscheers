@@ -12,6 +12,7 @@ import {
 } from 'styled-system'
 import shouldForwardProp from '@styled-system/should-forward-prop'
 import { css, SystemStyleObject } from '@styled-system/css'
+import { motion } from 'framer-motion'
 
 type BoxProps = React.RefAttributes<any> &
   React.HTMLAttributes<any> &
@@ -42,7 +43,23 @@ export const Box = styled('div', {
 )
 Box.displayName = 'Box'
 
+export const MotionBox = styled(motion.div)(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  _css,
+  sx,
+  compose(space, color, layout, flexbox)
+)
+MotionBox.displayName = 'MotionBox'
+
 export const Flex = styled(Box)({
   display: 'flex',
 })
 Flex.displayName = 'Flex'
+
+export const MotionFlex = styled(MotionBox)({
+  display: 'flex',
+})
+MotionFlex.displayName = 'MotionFlex'

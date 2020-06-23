@@ -1,9 +1,10 @@
 import { FC } from 'react'
 
-import { IBoxProps, Flex, Box } from '../styled'
+import { IBoxProps, Flex, MotionBox } from '../styled'
 import Meta from './Meta'
 import Nav from '../Nav'
 import Footer from './Footer'
+import { fadeInOut } from 'shared/animations'
 
 interface IProps extends IBoxProps {
   fullScreen?: boolean
@@ -11,16 +12,16 @@ interface IProps extends IBoxProps {
 
 const Layout: FC<IProps> = ({ children, fullScreen, ...rest }) => {
   return (
-    <>
+    <MotionBox initial="initial" animate="animate" exit="exit" height="100%">
       <Meta />
       <Flex flexDirection="column" height="100%" {...rest}>
         {!fullScreen && <Nav />}
-        <Box as="main" flex="1">
+        <MotionBox as="main" flex="1" variants={!fullScreen && fadeInOut}>
           {children}
-        </Box>
+        </MotionBox>
         {!fullScreen && <Footer />}
       </Flex>
-    </>
+    </MotionBox>
   )
 }
 

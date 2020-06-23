@@ -4,11 +4,14 @@ import { FocusOn } from 'react-focus-on'
 
 import useDisclosure from '@/hooks/useDisclosure'
 import Container from './core/Container'
-import { Box, Flex } from './styled'
+import { Box, Flex, MotionBox } from './styled'
 import Logo from './Logo'
 import ThemeSwitcher from './ThemeSwitcher'
 import Link, { ILinkProps } from './Link'
 import Button from './Button'
+import { useEffect } from 'react'
+import { fadeIn } from 'shared/animations'
+import { useAfterIntroContext } from 'context/AfterIntroContext'
 
 const routes = [
   {
@@ -98,13 +101,20 @@ const MobileNav: React.FC<IMobileNavProps> = ({ isOpen, onClose }) => {
   )
 }
 
-const Nav: React.FC = () => {
+const Nav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isAfterIntro, setAfterIntro } = useAfterIntroContext()
+
+  useEffect(() => {
+    if (isAfterIntro) {
+      setAfterIntro(false)
+    }
+  })
 
   return (
     <>
       <MobileNav isOpen={isOpen} onClose={onClose} />
-      <Box as="nav" py={2}>
+      <MotionBox as="nav" py={2} variants={isAfterIntro && fadeIn}>
         <Container alignItems="center">
           <Box mx={-2} flex="1" display={['none', null, 'flex']}>
             {routes.map((route) => {
@@ -149,7 +159,7 @@ const Nav: React.FC = () => {
             </Button>
           </Flex>
         </Container>
-      </Box>
+      </MotionBox>
     </>
   )
 }
