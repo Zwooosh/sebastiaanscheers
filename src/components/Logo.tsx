@@ -1,3 +1,4 @@
+import { __DEV__ } from 'shared/utils'
 import { Box, IBoxProps } from './styled'
 import Link from './Link'
 
@@ -26,5 +27,7 @@ const Logo = (props: IBoxProps) => {
     </Link>
   )
 }
+
+if (__DEV__) Logo.displayName = 'Logo'
 
 export default Logo

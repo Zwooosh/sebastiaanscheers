@@ -1,3 +1,4 @@
+import { __DEV__ } from 'shared/utils'
 import Container from './Container'
 import { Text } from '../styled'
 
@@ -17,5 +18,7 @@ const Footer = () => {
     </footer>
   )
 }
+
+if (__DEV__) Footer.displayName = 'Footer'
 
 export default Footer

@@ -1,7 +1,11 @@
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { FocusOn } from 'react-focus-on'
 
+import { __DEV__ } from 'shared/utils'
+import { fadeIn } from 'shared/animations'
+import { useIntroContext } from 'context/IntroContext'
 import useDisclosure from 'hooks/useDisclosure'
 import Container from './core/Container'
 import { Box, Flex, MotionBox } from './styled'
@@ -9,9 +13,6 @@ import Logo from './Logo'
 import ThemeSwitcher from './ThemeSwitcher'
 import Link, { ILinkProps } from './Link'
 import Button from './Button'
-import { useEffect } from 'react'
-import { fadeIn } from 'shared/animations'
-import { useIntroContext } from 'context/IntroContext'
 
 const routes = [
   {
@@ -158,6 +159,11 @@ const Nav = () => {
       </MotionBox>
     </>
   )
+}
+
+if (__DEV__) {
+  Nav.displayName = 'Nav'
+  MobileNav.displayName = 'MobileNav'
 }
 
 export default Nav

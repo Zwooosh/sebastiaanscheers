@@ -1,9 +1,10 @@
+import { AnchorHTMLAttributes, FC } from 'react'
 import NextLink from 'next/link'
 import { variant, typography, TypographyProps } from 'styled-system'
 import styled from '@emotion/styled'
 
+import { __DEV__ } from 'shared/utils'
 import { Box, IBoxProps } from './styled'
-import { AnchorHTMLAttributes, FC } from 'react'
 
 type LinkProps = IBoxProps &
   TypographyProps &
@@ -61,5 +62,7 @@ const HyperLink = styled(Box)(
   })
 )
 HyperLink.defaultProps = { as: 'a' }
+
+if (__DEV__) Link.displayName = 'Link'
 
 export default Link

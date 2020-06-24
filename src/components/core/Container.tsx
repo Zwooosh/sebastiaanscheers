@@ -1,3 +1,4 @@
+import { __DEV__ } from 'shared/utils'
 import { Flex } from '../styled'
 
 const Container = (props) => {
@@ -11,5 +12,7 @@ const Container = (props) => {
     />
   )
 }
+
+if (__DEV__) Container.displayName = 'Container'
 
 export default Container

@@ -10,6 +10,7 @@ import {
 } from 'react-icons/di'
 import { motion } from 'framer-motion'
 
+import { __DEV__ } from 'shared/utils'
 import { ISkill } from 'shared/types'
 import { fadeInUp } from 'shared/animations'
 import { Flex, Box, Heading, IBoxProps } from './styled'
@@ -87,5 +88,7 @@ const SkillList = (props: IBoxProps) => {
     </Box>
   )
 }
+
+if (__DEV__) SkillList.displayName = 'SkillList'
 
 export default SkillList

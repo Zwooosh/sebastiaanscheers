@@ -1,10 +1,11 @@
 import { FC } from 'react'
 
+import { __DEV__ } from 'shared/utils'
+import { fadeInOut } from 'shared/animations'
 import { IBoxProps, Flex, MotionBox } from '../styled'
 import Meta from './Meta'
 import Nav from '../Nav'
 import Footer from './Footer'
-import { fadeInOut } from 'shared/animations'
 
 interface IProps extends IBoxProps {
   fullScreen?: boolean
@@ -24,5 +25,7 @@ const Layout: FC<IProps> = ({ children, fullScreen, ...rest }) => {
     </MotionBox>
   )
 }
+
+if (__DEV__) Layout.displayName = 'Layout'
 
 export default Layout

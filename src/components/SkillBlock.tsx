@@ -1,3 +1,4 @@
+import { __DEV__ } from 'shared/utils'
 import { ISkill } from 'shared/types'
 import { Box, Text, MotionFlex } from './styled'
 
@@ -41,5 +42,7 @@ const SkillBlock = ({ icon, iconColor, title, description }: ISkill) => {
     </MotionFlex>
   )
 }
+
+if (__DEV__) SkillBlock.displayName = 'SkillBlock'
 
 export default SkillBlock

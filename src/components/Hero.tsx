@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
+import { __DEV__ } from 'shared/utils'
 import { fadeInUp } from 'shared/animations'
 import {
   Space,
@@ -82,5 +83,7 @@ const Hero = (props: IBoxProps) => {
     </Flex>
   )
 }
+
+if (__DEV__) Hero.displayName = 'Hero'
 
 export default Hero

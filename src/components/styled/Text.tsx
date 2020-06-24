@@ -3,6 +3,7 @@ import { typography, TypographyProps } from 'styled-system'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
+import { __DEV__ } from 'shared/utils'
 import { IBoxProps, Box } from './Box'
 
 export type TextProps = IBoxProps &
@@ -58,4 +59,10 @@ Text.defaultProps = {
 
 Paragraph.defaultProps = {
   as: 'p',
+}
+
+if (__DEV__) {
+  Text.displayName = 'Text'
+  Heading.displayName = 'Heading'
+  Paragraph.displayName = 'Paragraph'
 }

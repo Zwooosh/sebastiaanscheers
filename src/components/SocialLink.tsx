@@ -1,7 +1,7 @@
-import React from 'react'
 import { IconType } from 'react-icons/lib'
-import styled from 'theme'
 
+import styled from 'theme'
+import { __DEV__ } from 'shared/utils'
 import Link from './Link'
 
 interface IProps {
@@ -62,3 +62,5 @@ const PopupLink = styled(Link)`
     z-index: ${({ theme }) => theme.zIndices.absolute};
   }
 `
+
+if (__DEV__) PopupLink.displayName = 'PopupLink'

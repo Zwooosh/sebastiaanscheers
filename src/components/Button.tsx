@@ -1,9 +1,10 @@
 import React, { FC, ButtonHTMLAttributes } from 'react'
 import { typography, variant, TypographyProps } from 'styled-system'
+import { MotionProps } from 'framer-motion'
 import styled from '@emotion/styled'
 
+import { __DEV__ } from 'shared/utils'
 import { Box, IBoxProps, MotionBox } from './styled'
-import { MotionProps } from 'framer-motion'
 
 type ButtonProps = IBoxProps &
   TypographyProps &
@@ -68,3 +69,8 @@ const StyledMotionButton = styled(MotionBox)(...overrides)
 StyledMotionButton.defaultProps = { as: 'button' }
 
 export default Button
+
+if (__DEV__) {
+  StyledButton.displayName = 'StyledButton'
+  StyledMotionButton.displayName = 'StyledMotionButton'
+}

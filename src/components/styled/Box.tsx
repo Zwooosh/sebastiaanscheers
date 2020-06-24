@@ -14,6 +14,7 @@ import { css, SystemStyleObject } from '@styled-system/css'
 import { motion } from 'framer-motion'
 
 import styled, { Theme } from 'theme'
+import { __DEV__ } from 'shared/utils'
 
 type BoxProps = React.RefAttributes<any> &
   React.HTMLAttributes<any> &
@@ -42,7 +43,6 @@ export const Box = styled('div', {
   sx,
   compose(space, color, layout, flexbox)
 )
-Box.displayName = 'Box'
 
 export const MotionBox = styled(motion.div)(
   {
@@ -53,7 +53,6 @@ export const MotionBox = styled(motion.div)(
   sx,
   compose(space, color, layout, flexbox)
 )
-MotionBox.displayName = 'MotionBox'
 
 export const Flex = styled(Box)({
   display: 'flex',
@@ -63,4 +62,9 @@ Flex.displayName = 'Flex'
 export const MotionFlex = styled(MotionBox)({
   display: 'flex',
 })
-MotionFlex.displayName = 'MotionFlex'
+
+if (__DEV__) {
+  Box.displayName = 'Box'
+  MotionBox.displayName = 'MotionBox'
+  MotionFlex.displayName = 'MotionFlex'
+}

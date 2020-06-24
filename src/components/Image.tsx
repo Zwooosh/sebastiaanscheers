@@ -1,5 +1,6 @@
 import { ImgHTMLAttributes, forwardRef } from 'react'
 
+import { __DEV__ } from 'shared/utils'
 import { IUseImageProps, useImage } from 'hooks/useImage'
 import { IBoxProps, Box } from './styled'
 
@@ -54,5 +55,7 @@ const Image = forwardRef(function Image(
 
   return <Box as="img" src={src} crossOrigin={crossOrigin} {...shared} />
 })
+
+if (__DEV__) Image.displayName = 'Image'
 
 export default Image

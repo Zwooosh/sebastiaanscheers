@@ -1,5 +1,6 @@
 import { FiMoon, FiSun } from 'react-icons/fi'
 
+import { __DEV__ } from 'shared/utils'
 import { useThemeToggle } from 'context/ThemeContext'
 import Button from './Button'
 
@@ -11,5 +12,7 @@ const ThemeSwitcher = () => {
     </Button>
   )
 }
+
+if (__DEV__) ThemeSwitcher.displayName = 'ThemeSwitcher'
 
 export default ThemeSwitcher
