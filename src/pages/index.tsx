@@ -1,13 +1,14 @@
 import { useTheme } from 'emotion-theming'
 import useScript from 'react-script-hook'
+import { motion } from 'framer-motion'
 
 import { Theme } from 'theme'
+import { staggerChildren } from 'shared/animations'
 import { useIntroContext } from 'context/IntroContext'
 import Layout from 'components/core/Layout'
 import Container from 'components/core/Container'
 import Leon from 'components/Leon'
 import Hero from 'components/Hero'
-import { Box, Heading } from 'components/styled'
 import SkillList from 'components/SkillList'
 
 export default function Home(): JSX.Element {
@@ -31,10 +32,10 @@ export default function Home(): JSX.Element {
   return (
     <Layout>
       <Container flexDirection="column">
-        <Hero />
-        <Heading>Skills.</Heading>
-        <SkillList />
-        <Box height="1000px"></Box>
+        <motion.div variants={staggerChildren}>
+          <Hero mb={12} />
+          <SkillList mb={12} />
+        </motion.div>
       </Container>
     </Layout>
   )

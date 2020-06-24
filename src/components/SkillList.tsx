@@ -8,9 +8,11 @@ import {
   DiReact,
   DiJira,
 } from 'react-icons/di'
+import { motion } from 'framer-motion'
 
 import { ISkill } from 'shared/types'
-import { Flex, Box } from './styled'
+import { fadeInUp } from 'shared/animations'
+import { Flex, Box, Heading, IBoxProps } from './styled'
 import SkillBlock from './SkillBlock'
 
 const skills: ISkill[] = [
@@ -64,15 +66,25 @@ const skills: ISkill[] = [
   },
 ]
 
-const SkillList = () => {
+const SkillList = (props: IBoxProps) => {
   return (
-    <Flex mx={-2} my={-4} flexWrap="wrap">
-      {skills.map((skill, i) => (
-        <Box key={i} width={['100%', null, 1 / 2, 1 / 3, 1 / 4]} px={2} py={4}>
-          <SkillBlock {...skill} />
-        </Box>
-      ))}
-    </Flex>
+    <Box {...props}>
+      <motion.div variants={fadeInUp}>
+        <Heading>Skills.</Heading>
+      </motion.div>
+      <Flex mx={-2} my={-4} flexWrap="wrap">
+        {skills.map((skill, i) => (
+          <Box
+            key={i}
+            width={['100%', null, 1 / 2, 1 / 3, 1 / 4]}
+            px={2}
+            py={4}
+          >
+            <SkillBlock {...skill} />
+          </Box>
+        ))}
+      </Flex>
+    </Box>
   )
 }
 

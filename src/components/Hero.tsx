@@ -8,20 +8,28 @@ import {
 } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
-import SocialLink from './SocialLink'
+import { fadeInUp } from 'shared/animations'
+import {
+  Space,
+  MotionBox,
+  MotionFlex,
+  Heading,
+  Text,
+  IBoxProps,
+  Flex,
+} from './styled'
+import AspectRatio from './AspectRatio'
 import Image from './Image'
-import { Space, MotionBox, MotionFlex, Heading, Text } from './styled'
-import { AspectRatio } from './AspectRatio'
-import { fadeInUp, staggerChildren } from 'shared/animations'
+import SocialLink from './SocialLink'
 
-const Hero = () => {
+const Hero = (props: IBoxProps) => {
   return (
-    <MotionFlex
+    <Flex
       flexDirection="column"
       alignItems="center"
       mx="auto"
       py={6}
-      variants={staggerChildren}
+      {...props}
     >
       <MotionBox
         sx={{
@@ -71,7 +79,7 @@ const Hero = () => {
           />
         </Space>
       </MotionFlex>
-    </MotionFlex>
+    </Flex>
   )
 }
 

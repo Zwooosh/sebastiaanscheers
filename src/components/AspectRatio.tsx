@@ -1,5 +1,7 @@
-import { IBoxProps, Box } from './styled'
 import { forwardRef, Children } from 'react'
+
+import { __DEV__ } from 'shared/utils'
+import { IBoxProps, Box } from './styled'
 
 interface IAspectRatioProps extends IBoxProps {
   /**
@@ -8,7 +10,7 @@ interface IAspectRatioProps extends IBoxProps {
   ratio?: number
 }
 
-export const AspectRatio = forwardRef(function AspectRatio(
+const AspectRatio = forwardRef(function AspectRatio(
   { ratio = 4 / 3, children, ...rest }: IAspectRatioProps,
   ref: React.Ref<any>
 ) {
@@ -49,3 +51,7 @@ export const AspectRatio = forwardRef(function AspectRatio(
     </Box>
   )
 })
+
+if (__DEV__) AspectRatio.displayName = 'AspectRatio'
+
+export default AspectRatio

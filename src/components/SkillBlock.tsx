@@ -1,9 +1,19 @@
 import { ISkill } from 'shared/types'
-import { Box, Text, Flex } from './styled'
+import { Box, Text, MotionFlex } from './styled'
 
 const SkillBlock = ({ icon, iconColor, title, description }: ISkill) => {
   return (
-    <Flex flexDirection="column" height="full">
+    <MotionFlex
+      flexDirection="column"
+      height="full"
+      whileHover="scale"
+      variants={{
+        initial: { y: 50, opacity: 0 },
+        animate: { y: 0, opacity: 1 },
+        exit: { y: 50, opacity: 0 },
+        scale: { scale: 1.03, transition: { type: 'spring', stiffness: 500 } },
+      }}
+    >
       <Text display="flex" alignItems="center" fontWeight="semibold" mb={1}>
         <Box
           as={icon}
@@ -28,7 +38,7 @@ const SkillBlock = ({ icon, iconColor, title, description }: ISkill) => {
       >
         {description}
       </Box>
-    </Flex>
+    </MotionFlex>
   )
 }
 

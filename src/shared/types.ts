@@ -9,3 +9,5 @@ export interface ISkill {
   title: string
   description: string
 }
+
+export type Dict<T = any> = Record<string, T>
