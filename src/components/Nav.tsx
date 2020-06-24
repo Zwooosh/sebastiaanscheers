@@ -111,7 +111,7 @@ const Nav = () => {
     <>
       <MobileNav isOpen={isOpen} onClose={onClose} />
       <MotionBox as="nav" py={2} variants={isAfterIntro && fadeIn}>
-        <Container alignItems="center">
+        <Container alignItems="center" flexDirection="row">
           <Box mx={-2} flex="1" display={['none', null, 'flex']}>
             {routes.map((route) => {
               if (!route.split) {

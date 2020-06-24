@@ -49,6 +49,7 @@ export const Heading = styled(Text)<HeadingProps>({})
 
 Heading.defaultProps = {
   as: 'h2',
+  fontSize: ['2xl', '3xl', '4xl'],
 }
 
 Text.defaultProps = {

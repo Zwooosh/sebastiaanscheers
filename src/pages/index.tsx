@@ -7,6 +7,8 @@ import Layout from 'components/core/Layout'
 import Container from 'components/core/Container'
 import Leon from 'components/Leon'
 import Hero from 'components/Hero'
+import { Box, Heading } from 'components/styled'
+import SkillList from 'components/SkillList'
 
 export default function Home(): JSX.Element {
   const { renderIntro, disableIntro } = useIntroContext()
@@ -28,8 +30,11 @@ export default function Home(): JSX.Element {
 
   return (
     <Layout>
-      <Container>
+      <Container flexDirection="column">
         <Hero />
+        <Heading>Skills.</Heading>
+        <SkillList />
+        <Box height="1000px"></Box>
       </Container>
     </Layout>
   )

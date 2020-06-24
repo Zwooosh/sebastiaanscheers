@@ -46,7 +46,7 @@ const Hero = () => {
         </AspectRatio>
       </MotionBox>
       <motion.div variants={fadeInUp}>
-        <Heading as="h1" fontSize="3xl" textAlign="center" mb={2}>
+        <Heading as="h1" textAlign="center" mb={2}>
           Sebastiaan Scheers
         </Heading>
       </motion.div>
