@@ -36,7 +36,7 @@ const Hero = (props: IBoxProps) => {
         sx={{
           position: 'relative',
           backgroundColor: 'backgroundInverse',
-          size: ['xs', 'sm', 'md'],
+          size: ['80vw', 'sm', 'md'],
           borderRadius: 'full',
           overflow: 'hidden',
           marginBottom: 4,

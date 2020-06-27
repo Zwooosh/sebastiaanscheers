@@ -356,8 +356,6 @@ const Leon: React.FC<IProps> = ({ onComplete, color }) => {
           },
         }}
         onClick={onComplete}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
         initial={{
           y: 50,
           opacity: 0,

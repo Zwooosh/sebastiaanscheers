@@ -1,11 +1,11 @@
 import { __DEV__ } from 'shared/utils'
-import { Box, IBoxProps } from './styled'
-import Link from './Link'
+import { Box } from './styled'
+import Link, { ILinkProps } from './Link'
 
-const Logo = (props: IBoxProps) => {
+const Logo = ({ size = 8, ...rest }: ILinkProps) => {
   return (
-    <Link variant="nav" href="/">
-      <Box size={8} {...props}>
+    <Link variant="nav" href="/" {...rest}>
+      <Box size={size}>
         <svg
           width="100%"
           height="100%"

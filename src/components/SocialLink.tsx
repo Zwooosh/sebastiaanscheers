@@ -15,7 +15,7 @@ const stripUrl = (url: string) => url.replace(/^(https?:\/\/)/, '')
 const SocialLink = ({ icon: Icon, href, className }: IProps) => {
   return (
     <PopupLink
-      variant="nav"
+      p={2}
       className={className}
       data-title={stripUrl(href)}
       href={href}

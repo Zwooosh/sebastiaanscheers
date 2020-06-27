@@ -50,13 +50,9 @@ const HyperLink = styled(Box)(
   variant({
     variants: {
       nav: {
+        fontSize: ['sm', null, 'inherit'],
         p: 2,
-      },
-      mobileNav: {
-        fontSize: '2xl',
-        display: 'block',
-        px: 2,
-        py: 6,
+        lineHeight: 'none',
       },
     },
   })
