@@ -10,6 +10,7 @@ import Container from 'components/core/Container'
 import Leon from 'components/Leon'
 import Hero from 'components/Hero'
 import SkillList from 'components/SkillList'
+import { Space } from 'components/styled'
 
 export default function Home(): JSX.Element {
   const { renderIntro, disableIntro } = useIntroContext()
@@ -33,8 +34,10 @@ export default function Home(): JSX.Element {
     <Layout>
       <Container flexDirection="column">
         <motion.div variants={staggerChildren}>
-          <Hero mb={12} />
-          <SkillList mb={12} />
+          <Space mb={[3, 6, 12]}>
+            <Hero />
+            <SkillList />
+          </Space>
         </motion.div>
       </Container>
     </Layout>

@@ -11,17 +11,22 @@ const SkillBlock = ({ icon, iconColor, title, description }: ISkill) => {
       variants={{
         initial: { y: 50, opacity: 0 },
         animate: { y: 0, opacity: 1 },
-        exit: { y: 50, opacity: 0 },
         scale: { scale: 1.03, transition: { type: 'spring', stiffness: 500 } },
       }}
     >
-      <Text display="flex" alignItems="center" fontWeight="semibold" mb={1}>
+      <Text
+        display="flex"
+        alignItems="center"
+        fontWeight="semibold"
+        mb={1}
+        fontSize={['sm', null, 'inherit']}
+      >
         <Box
           as={icon}
           sx={{
             mr: 2,
             color: iconColor,
-            fontSize: '2xl',
+            fontSize: ['xl', null, '2xl'],
           }}
         />
         {title}
@@ -30,8 +35,8 @@ const SkillBlock = ({ icon, iconColor, title, description }: ISkill) => {
         sx={{
           bg: 'backgroundAccent',
           borderRadius: 'md',
-          p: 4,
-          fontSize: 'sm',
+          p: [3, null, 4],
+          fontSize: ['xs', 'sm'],
           fontFamily: 'mono',
           color: 'textSoft',
           flex: '1',

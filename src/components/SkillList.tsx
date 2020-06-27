@@ -73,13 +73,13 @@ const SkillList = (props: IBoxProps) => {
       <motion.div variants={fadeInUp}>
         <Heading>Skills.</Heading>
       </motion.div>
-      <Flex mx={-2} my={-4} flexWrap="wrap">
+      <Flex mx={-2} my={[-2, null, -4]} flexWrap="wrap">
         {skills.map((skill, i) => (
           <Box
             key={i}
             width={['100%', null, 1 / 2, 1 / 3, 1 / 4]}
             px={2}
-            py={4}
+            py={[2, null, 4]}
           >
             <SkillBlock {...skill} />
           </Box>
